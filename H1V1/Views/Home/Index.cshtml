@@ -1,8 +1,239 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Dashboard";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="page">
+
+    <div class="page-header">
+
+        <div>
+            <h1 class="page-title">
+                Good morning, Moagi!
+                <i class="bi bi-hand-wave"></i>
+            </h1>
+
+            <p class="page-subtitle">
+                Here's what's happening with your studies today.
+            </p>
+        </div>
+
+    </div>
+
+
+    <!-- STAT CARDS -->
+
+    <div class="stat-grid">
+
+        <div class="stat-card blue">
+
+            <div>
+                <i class="bi bi-calendar-event"></i>
+            </div>
+
+            <div class="stat-value">
+                3
+            </div>
+
+            <div class="stat-label">
+                Assessments Due Soon
+            </div>
+
+            <small>
+                View all <i class="bi bi-arrow-right"></i>
+            </small>
+
+        </div>
+
+
+        <div class="stat-card green">
+
+            <div>
+                <i class="bi bi-clock"></i>
+            </div>
+
+            <div class="stat-value">
+                2.5 hrs
+            </div>
+
+            <div class="stat-label">
+                Study Time Available
+            </div>
+
+            <small>
+                View plan <i class="bi bi-arrow-right"></i>
+            </small>
+
+        </div>
+
+
+        <div class="stat-card purple">
+
+            <div>
+                <i class="bi bi-bar-chart-line"></i>
+            </div>
+
+            <div class="stat-value">
+                72%
+            </div>
+
+            <div class="stat-label">
+                Overall Progress
+            </div>
+
+            <small>
+                View details <i class="bi bi-arrow-right"></i>
+            </small>
+
+        </div>
+
+    </div>
+
+
+    <!-- LOWER CONTENT -->
+
+    <div class="content-grid">
+
+        <div class="card">
+
+            <div class="page-header">
+
+                <strong>
+                    Upcoming Assessments
+                </strong>
+
+                <a href="#">
+                    View all <i class="bi bi-arrow-right"></i>
+                </a>
+
+            </div>
+
+
+            <div class="list-item">
+
+                <div class="item-left">
+
+                    <div class="item-icon">
+                        <i class="bi bi-book"></i>
+                    </div>
+
+                    <div>
+
+                        <div class="item-title">
+                            Database Assignment
+                        </div>
+
+                        <div class="item-subtitle">
+                            Database Systems
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <span class="badge badge-danger">
+                    3 days left
+                </span>
+
+            </div>
+
+
+            <div class="list-item">
+
+                <div class="item-left">
+
+                    <div class="item-icon">
+                        <i class="bi bi-laptop"></i>
+                    </div>
+
+                    <div>
+
+                        <div class="item-title">
+                            C# Test
+                        </div>
+
+                        <div class="item-subtitle">
+                            Programming
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <span class="badge badge-warning">
+                    5 days left
+                </span>
+
+            </div>
+
+
+            <div class="list-item">
+
+                <div class="item-left">
+
+                    <div class="item-icon">
+                        <i class="bi bi-globe2"></i>
+                    </div>
+
+                    <div>
+
+                        <div class="item-title">
+                            Web Development Project
+                        </div>
+
+                        <div class="item-subtitle">
+                            Web Development
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <span class="badge badge-success">
+                    7 days left
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- AI CARD -->
+
+        <div class="card">
+
+            <h3>
+                <i class="bi bi-robot"></i>
+                EduBuddy Recommendations
+            </h3>
+
+            <p>
+                You have 2.5 hours available today.
+                Would you like me to generate a study
+                plan for your upcoming assessments?
+            </p>
+
+            <button class="btn-primary">
+                Generate Study Plan
+                <i class="bi bi-arrow-right"></i>
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <br />
+
+    <div class="card">
+
+        <i class="bi bi-lightbulb"></i>
+
+        <strong>
+            Stay consistent!
+        </strong>
+
+        Small steps lead to big results.
+
+    </div>
+
 </div>

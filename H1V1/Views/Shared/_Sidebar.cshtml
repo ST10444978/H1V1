@@ -1,0 +1,69 @@
+@{
+    var controller = ViewContext.RouteData.Values["controller"]?.ToString();
+}
+
+<aside class="sidebar">
+
+    <div class="logo">
+        <i class="bi bi-mortarboard-fill"></i>
+        <span>EduBuddy</span>
+    </div>
+
+    <nav class="nav-menu">
+
+        <a asp-controller="Home"
+           asp-action="Index"
+           class="nav-item @(controller == "Home" ? "active" : "")">
+            <i class="bi bi-house"></i>
+            <span>Dashboard</span>
+        </a>
+
+        <a asp-controller="Assessments"
+           asp-action="Index"
+           class="nav-item @(controller == "Assessments" ? "active" : "")">
+            <i class="bi bi-clipboard-check"></i>
+            <span>Assessments</span>
+        </a>
+
+        <a asp-controller="Chat"
+           asp-action="Index"
+            class="nav-item @(controller == "Chat" ? "active" : "")">
+            <i class="bi bi-robot"></i>
+            <span>AI Agent</span>
+        </a>
+
+        <a asp-controller="StudyPlan"
+           asp-action="Index"
+           class="nav-item @(controller == "StudyPlan" ? "active" : "")">
+            <i class="bi bi-calendar-check"></i>
+            <span>Study Plan</span>
+        </a>
+
+        <a asp-controller="Reminders"
+           asp-action="Index"
+           class="nav-item @(controller == "Reminders" ? "active" : "")">
+            <i class="bi bi-bell"></i>
+            <span>Reminders</span>
+        </a>
+
+        <a asp-controller="Resources"
+           asp-action="Index"
+           class="nav-item @(controller == "Resources" ? "active" : "")">
+            <i class="bi bi-book"></i>
+            <span>Resources</span>
+        </a>
+
+    </nav>
+
+    <div class="sidebar-bottom">
+
+        <a asp-controller="Settings"
+           asp-action="Index"
+           class="nav-item">
+            <i class="bi bi-gear"></i>
+            <span>Settings</span>
+        </a>
+
+    </div>
+
+</aside>

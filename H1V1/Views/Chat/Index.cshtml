@@ -1,0 +1,221 @@
+@{
+    ViewData["Title"] = "AI Agent";
+}
+
+<div class="page">
+
+    <div class="page-header">
+
+        <div>
+
+            <h1 class="page-title">
+                <i class="bi bi-robot"></i>
+                EduBuddy AI
+            </h1>
+
+            <p class="page-subtitle">
+                Your academic success assistant
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <!-- USER MESSAGE -->
+
+        <div style="
+            display:flex;
+            justify-content:flex-end;
+            margin-bottom:20px;">
+
+            <div style="
+                background:#edf2ff;
+                padding:15px;
+                border-radius:12px;
+                max-width:600px;">
+
+                I have a C# test Friday and a
+                database assignment due Monday.
+
+                <br><br>
+
+                I have 4 hours available this weekend.
+
+            </div>
+
+        </div>
+
+
+        <!-- AI RESPONSE -->
+
+        <div style="
+            display:flex;
+            gap:15px;
+            margin-bottom:25px;">
+
+            <div class="avatar">
+                <i class="bi bi-robot"></i>
+            </div>
+
+            <div>
+
+                <strong>
+                    EduBuddy
+                </strong>
+
+                <p>
+                    I've analysed your workload.
+                    Here's what I found:
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- ASSESSMENTS + PLAN -->
+
+        <div class="content-grid">
+
+            <div class="card">
+
+                <h3>
+                    Your Assessments
+                </h3>
+
+                <div class="list-item">
+
+                    <div>
+
+                        <strong>
+                            C# Test
+                        </strong>
+
+                        <p>
+                            Friday, 2 Oct
+                        </p>
+
+                    </div>
+
+                    <span class="badge badge-danger">
+                        High priority
+                    </span>
+
+                </div>
+
+
+                <div class="list-item">
+
+                    <div>
+
+                        <strong>
+                            Database Assignment
+                        </strong>
+
+                        <p>
+                            Monday, 5 Oct
+                        </p>
+
+                    </div>
+
+                    <span class="badge badge-danger">
+                        High priority
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>
+                    <i class="bi bi-calendar-event"></i>
+                    Recommended Study Plan
+                </h3>
+
+                <p>
+                    I've created a study plan based on
+                    your available time.
+                </p>
+
+                <button class="btn-primary">
+                    View Study Plan
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- QUICK ACTIONS -->
+
+        <br />
+
+        <div>
+
+            <strong>
+                You can also ask me to:
+            </strong>
+
+            <br><br>
+
+            <button>
+                <i class="bi bi-book"></i>
+                Find study resources
+            </button>
+
+            <button>
+                <i class="bi bi-clipboard-check"></i>
+                Check my assessments
+            </button>
+
+            <button>
+                <i class="bi bi-bell"></i>
+                Set a reminder
+            </button>
+
+            <button>
+                <i class="bi bi-gear"></i>
+                Adjust my plan
+            </button>
+
+        </div>
+
+
+        <!-- CHAT INPUT -->
+
+        <br />
+
+        <form asp-action="Chat"
+              method="post">
+
+            <div style="
+                display:flex;
+                gap:10px;">
+
+                <input
+                    name="message"
+                    class="search"
+                    style="flex:1"
+                    placeholder="Ask EduBuddy anything..." />
+
+                <button
+                    type="submit"
+                    class="btn-primary">
+
+                    Send
+                    <i class="bi bi-send"></i>
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
