@@ -45,6 +45,9 @@ namespace H1V1
 
             var app = builder.Build();
 
+            Console.WriteLine("CONTENT ROOT: " + app.Environment.ContentRootPath);
+            Console.WriteLine("WEB ROOT: " + app.Environment.WebRootPath);
+
             if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Home/Error");
@@ -57,6 +60,7 @@ namespace H1V1
             app.UseAuthorization();
 
             app.MapControllers();
+            app.MapStaticAssets(); 
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");

@@ -19,8 +19,17 @@
     --shadow: 0 4px 18px rgba(32, 45, 100, 0.08);
 }
 
+
+/* ========================================
+   GLOBAL
+======================================== */
+
 * {
     box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
@@ -32,16 +41,34 @@ body {
 
 a {
     text-decoration: none;
+    color: inherit;
 }
 
-/* APP */
+button,
+input,
+textarea,
+select {
+    font-family: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+
+/* ========================================
+   APP
+======================================== */
 
 .app {
     display: flex;
     min-height: 100vh;
 }
 
-/* SIDEBAR */
+
+/* ========================================
+   SIDEBAR
+======================================== */
 
 .sidebar {
     width: 230px;
@@ -52,7 +79,12 @@ a {
     left: 0;
     top: 0;
     bottom: 0;
+    z-index: 100;
+    overflow-y: auto;
 }
+
+
+/* LOGO */
 
 .logo {
     display: flex;
@@ -73,7 +105,11 @@ a {
     align-items: center;
     justify-content: center;
     font-weight: 800;
+    flex-shrink: 0;
 }
+
+
+/* NAVIGATION */
 
 .nav-menu {
     display: flex;
@@ -87,13 +123,20 @@ a {
     gap: 12px;
     padding: 12px 14px;
     border-radius: 9px;
-    color: rgba(255,255,255,.82);
+    color: rgba(255, 255, 255, .82);
     font-size: 14px;
-    transition: .2s;
+    transition: .2s ease;
 }
 
+    .nav-item i {
+        width: 20px;
+        text-align: center;
+        font-size: 16px;
+        flex-shrink: 0;
+    }
+
     .nav-item:hover {
-        background: rgba(255,255,255,.1);
+        background: rgba(255, 255, 255, .1);
         color: white;
     }
 
@@ -103,6 +146,9 @@ a {
         font-weight: 600;
     }
 
+
+/* SIDEBAR BOTTOM */
+
 .sidebar-bottom {
     position: absolute;
     bottom: 25px;
@@ -110,39 +156,83 @@ a {
     right: 16px;
 }
 
-/* MAIN */
+
+/* ========================================
+   MAIN
+======================================== */
 
 .main {
     margin-left: 230px;
     width: calc(100% - 230px);
+    min-width: 0;
 }
 
-/* TOP BAR */
+
+/* ========================================
+   TOP BAR
+======================================== */
 
 .topbar {
-    height: 70px;
+    min-height: 70px;
     background: white;
     border-bottom: 1px solid var(--border);
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 20px;
     padding: 0 30px;
+    position: sticky;
+    top: 0;
+    z-index: 50;
 }
+
+
+/* SEARCH */
 
 .search {
     width: 320px;
+    max-width: 100%;
     background: #f5f7fb;
     border: 1px solid #edf0f7;
     border-radius: 10px;
     padding: 10px 15px;
     outline: none;
+    color: var(--text);
+    transition: .2s ease;
 }
+
+    .search:focus {
+        border-color: #cfd3ff;
+        background: white;
+        box-shadow: 0 0 0 3px rgba(112, 71, 235, .08);
+    }
+
+    .search::placeholder {
+        color: #9aa1b2;
+    }
+
+
+/* USER AREA */
 
 .user-area {
     display: flex;
     align-items: center;
     gap: 12px;
+    white-space: nowrap;
 }
+
+    .user-area > span {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .user-area i {
+        font-size: 17px;
+    }
+
+
+/* AVATAR */
 
 .avatar {
     width: 35px;
@@ -154,18 +244,29 @@ a {
     align-items: center;
     justify-content: center;
     font-weight: 600;
+    flex-shrink: 0;
 }
 
-/* PAGE */
+
+/* ========================================
+   PAGE
+======================================== */
 
 .page {
     padding: 30px;
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
 }
+
+
+/* PAGE HEADER */
 
 .page-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 20px;
     margin-bottom: 25px;
 }
 
@@ -173,15 +274,24 @@ a {
     margin: 0;
     font-size: 25px;
     font-weight: 700;
+    line-height: 1.3;
 }
+
+    .page-title i {
+        margin-right: 6px;
+    }
 
 .page-subtitle {
     margin-top: 5px;
+    margin-bottom: 0;
     color: var(--muted);
     font-size: 14px;
 }
 
-/* BUTTONS */
+
+/* ========================================
+   BUTTONS
+======================================== */
 
 .btn-primary {
     border: none;
@@ -191,13 +301,26 @@ a {
     border-radius: 8px;
     font-weight: 600;
     cursor: pointer;
+    transition: .2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
 }
 
     .btn-primary:hover {
         opacity: .9;
+        transform: translateY(-1px);
     }
 
-/* CARDS */
+    .btn-primary:active {
+        transform: translateY(0);
+    }
+
+
+/* ========================================
+   CARDS
+======================================== */
 
 .card {
     background: white;
@@ -205,9 +328,21 @@ a {
     border-radius: var(--radius);
     box-shadow: var(--shadow);
     padding: 20px;
+    min-width: 0;
 }
 
-/* STAT CARDS */
+    .card h3 {
+        margin-top: 0;
+    }
+
+        .card h3 i {
+            margin-right: 6px;
+        }
+
+
+/* ========================================
+   STAT CARDS
+======================================== */
 
 .stat-grid {
     display: grid;
@@ -220,6 +355,7 @@ a {
     padding: 20px;
     border-radius: 12px;
     border: 1px solid transparent;
+    min-width: 0;
 }
 
     .stat-card.blue {
@@ -245,20 +381,32 @@ a {
     color: var(--muted);
 }
 
-/* GRID */
+
+/* ========================================
+   CONTENT GRID
+======================================== */
 
 .content-grid {
     display: grid;
     grid-template-columns: 1.5fr 1fr;
     gap: 20px;
+    min-width: 0;
 }
 
-/* TABLE / LIST */
+    .content-grid > * {
+        min-width: 0;
+    }
+
+
+/* ========================================
+   LIST / TABLE ITEMS
+======================================== */
 
 .list-item {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 15px;
     padding: 15px 0;
     border-bottom: 1px solid var(--border);
 }
@@ -271,6 +419,7 @@ a {
     display: flex;
     align-items: center;
     gap: 12px;
+    min-width: 0;
 }
 
 .item-icon {
@@ -282,7 +431,12 @@ a {
     justify-content: center;
     background: var(--purple-light);
     color: var(--purple);
+    flex-shrink: 0;
 }
+
+    .item-icon i {
+        font-size: 17px;
+    }
 
 .item-title {
     font-weight: 600;
@@ -295,13 +449,20 @@ a {
     margin-top: 3px;
 }
 
-/* BADGES */
+
+/* ========================================
+   BADGES
+======================================== */
 
 .badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     padding: 5px 10px;
     border-radius: 20px;
     font-size: 11px;
     font-weight: 600;
+    white-space: nowrap;
 }
 
 .badge-danger {
@@ -319,29 +480,767 @@ a {
     color: #169b77;
 }
 
-/* RESPONSIVE */
+
+/* ========================================
+   ASSESSMENTS
+======================================== */
+
+/* TABS */
+
+.assessment-tabs {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.assessment-tab {
+    border: none;
+    background: transparent;
+    color: var(--muted);
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .2s ease;
+}
+
+    .assessment-tab:hover {
+        background: var(--background);
+        color: var(--text);
+    }
+
+    .assessment-tab.active {
+        background: linear-gradient( 135deg, #6d42ee, #4d38db );
+        color: white;
+    }
+
+
+/* ASSESSMENT ROW */
+
+.assessment-item {
+    display: grid;
+    grid-template-columns: minmax(280px, 1fr) 170px 120px 75px;
+    align-items: center;
+    gap: 20px;
+    padding: 17px 0;
+}
+
+    .assessment-item .item-left {
+        min-width: 0;
+    }
+
+
+/* DATE */
+
+.assessment-date {
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+
+/* STATUS */
+
+.assessment-status {
+    justify-self: start;
+}
+
+
+/* VIEW BUTTON */
+
+.btn-view {
+    border: 1px solid var(--border);
+    background: white;
+    color: var(--primary);
+    padding: 8px 15px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .2s ease;
+    white-space: nowrap;
+}
+
+    .btn-view:hover {
+        background: var(--primary-light);
+        border-color: #cdd2ff;
+        color: var(--primary-dark);
+    }
+
+    .btn-view:active {
+        transform: translateY(1px);
+    }
+
+
+/* ========================================
+   QUICK ACTIONS
+======================================== */
+
+.quick-actions {
+    margin-top: 28px;
+}
+
+
+/* HEADER */
+
+.quick-actions-header {
+    margin-bottom: 16px;
+}
+
+    .quick-actions-header h3 {
+        margin: 0 0 5px 0;
+        font-size: 17px;
+        font-weight: 700;
+    }
+
+    .quick-actions-header p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 13px;
+    }
+
+
+/* GRID */
+
+.quick-actions-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+
+/* ACTION BUTTON */
+
+.quick-action {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 14px 15px;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    cursor: pointer;
+    text-align: left;
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease, background .2s ease;
+    font-family: inherit;
+    min-width: 0;
+}
+
+    .quick-action:hover {
+        transform: translateY(-2px);
+        border-color: #d6d1ff;
+        background: #faf9ff;
+        box-shadow: 0 6px 18px rgba(50, 45, 120, .09);
+    }
+
+    .quick-action:active {
+        transform: translateY(0);
+    }
+
+
+/* ICON */
+
+.quick-action-icon {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--purple-light);
+    color: var(--purple);
+    border-radius: 10px;
+    font-size: 18px;
+}
+
+
+/* CONTENT */
+
+.quick-action-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+    min-width: 0;
+}
+
+    .quick-action-content strong {
+        color: var(--text);
+        font-size: 13px;
+        font-weight: 600;
+    }
+
+    .quick-action-content span {
+        color: var(--muted);
+        font-size: 11px;
+        line-height: 1.4;
+    }
+
+
+/* ARROW */
+
+.quick-action-arrow {
+    color: #a0a6b8;
+    font-size: 14px;
+    transition: transform .2s ease, color .2s ease;
+    flex-shrink: 0;
+}
+
+.quick-action:hover .quick-action-arrow {
+    color: var(--purple);
+    transform: translateX(3px);
+}
+
+
+/* ========================================
+   AI CHAT
+======================================== */
+
+.chat-message {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+    .chat-message.user {
+        justify-content: flex-end;
+    }
+
+.chat-bubble {
+    max-width: 600px;
+    padding: 15px;
+    border-radius: 12px;
+    line-height: 1.5;
+    font-size: 14px;
+}
+
+    .chat-bubble.user {
+        background: #edf2ff;
+    }
+
+    .chat-bubble.ai {
+        background: #f7f5ff;
+    }
+
+
+/* ========================================
+   ICON HELPERS
+======================================== */
+
+.nav-item i,
+.item-icon i,
+.quick-action-icon i,
+.quick-action-arrow,
+.page-title i,
+.card h3 i {
+    vertical-align: middle;
+}
+
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (max-width: 1100px) {
+
+    /* SIDEBAR */
+
+    .sidebar {
+        width: 200px;
+    }
+
+    .main {
+        margin-left: 200px;
+        width: calc(100% - 200px);
+    }
+
+
+    /* TOPBAR */
+
+    .topbar {
+        padding: 0 22px;
+    }
+
+    .search {
+        width: 260px;
+    }
+
+
+    /* PAGE */
+
+    .page {
+        padding: 25px;
+    }
+
+
+    /* STATS */
+
+    .stat-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+
+    /* CONTENT */
+
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    /* ASSESSMENTS */
+
+    .assessment-item {
+        grid-template-columns: minmax(220px, 1fr) 150px 110px 65px;
+        gap: 14px;
+    }
+}
+
+
+/* ========================================
+   TABLET / SMALL SCREEN
+======================================== */
 
 @media (max-width: 900px) {
 
+    /* SIDEBAR */
+
     .sidebar {
         width: 75px;
+        padding: 22px 10px;
     }
 
-        .sidebar .nav-item span,
+    .logo {
+        justify-content: center;
+        margin-bottom: 30px;
+    }
+
         .logo span {
             display: none;
         }
+
+    .logo-icon {
+        width: 38px;
+        height: 38px;
+    }
+
+    .nav-item {
+        justify-content: center;
+        padding: 12px 8px;
+    }
+
+        .nav-item span {
+            display: none;
+        }
+
+        .nav-item i {
+            width: auto;
+            font-size: 18px;
+        }
+
+    .sidebar-bottom {
+        left: 10px;
+        right: 10px;
+    }
+
+
+    /* MAIN */
 
     .main {
         margin-left: 75px;
         width: calc(100% - 75px);
     }
 
+
+    /* TOPBAR */
+
+    .topbar {
+        padding: 0 20px;
+    }
+
+    .search {
+        width: 220px;
+    }
+
+
+    /* PAGE */
+
+    .page {
+        padding: 22px;
+    }
+
+
+    /* STATS */
+
     .stat-grid {
         grid-template-columns: 1fr;
     }
 
+
+    /* CONTENT */
+
     .content-grid {
         grid-template-columns: 1fr;
+    }
+
+
+    /* ASSESSMENTS */
+
+    .assessment-item {
+        grid-template-columns: 1fr auto;
+        gap: 12px 20px;
+        padding: 16px 0;
+    }
+
+        .assessment-item .item-left {
+            grid-column: 1;
+            grid-row: 1;
+        }
+
+    .assessment-date {
+        grid-column: 1;
+        grid-row: 2;
+        padding-left: 50px;
+        font-size: 12px;
+    }
+
+    .assessment-status {
+        grid-column: 2;
+        grid-row: 1;
+        justify-self: end;
+    }
+
+    .btn-view {
+        grid-column: 2;
+        grid-row: 2;
+        justify-self: end;
+    }
+
+
+    /* QUICK ACTIONS */
+
+    .quick-actions-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 600px) {
+
+    /* SIDEBAR */
+
+    .sidebar {
+        width: 62px;
+        padding: 18px 7px;
+    }
+
+    .logo-icon {
+        width: 36px;
+        height: 36px;
+    }
+
+    .nav-item {
+        padding: 11px 6px;
+    }
+
+
+    /* MAIN */
+
+    .main {
+        margin-left: 62px;
+        width: calc(100% - 62px);
+    }
+
+
+    /* TOPBAR */
+
+    .topbar {
+        min-height: 64px;
+        padding: 0 14px;
+        gap: 10px;
+    }
+
+    .search {
+        width: 100%;
+        min-width: 0;
+        padding: 9px 12px;
+        font-size: 13px;
+    }
+
+    .user-area {
+        gap: 7px;
+    }
+
+        .user-area > span {
+            display: none;
+        }
+
+    .avatar {
+        width: 32px;
+        height: 32px;
+        font-size: 13px;
+    }
+
+
+    /* PAGE */
+
+    .page {
+        padding: 18px 14px;
+    }
+
+
+    /* HEADER */
+
+    .page-header {
+        align-items: flex-start;
+        flex-direction: column;
+        margin-bottom: 20px;
+    }
+
+    .page-title {
+        font-size: 21px;
+    }
+
+    .page-subtitle {
+        font-size: 13px;
+    }
+
+
+    /* BUTTON */
+
+    .btn-primary {
+        width: 100%;
+        padding: 10px 15px;
+    }
+
+
+    /* CARD */
+
+    .card {
+        padding: 16px;
+        border-radius: 10px;
+    }
+
+
+    /* STATS */
+
+    .stat-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .stat-card {
+        padding: 16px;
+    }
+
+    .stat-value {
+        font-size: 24px;
+    }
+
+
+    /* GENERAL LIST */
+
+    .list-item {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .item-left {
+        width: 100%;
+    }
+
+
+    /* BADGES */
+
+    .badge {
+        align-self: flex-start;
+    }
+
+
+    /* ====================================
+       ASSESSMENTS MOBILE
+    ==================================== */
+
+    .assessment-tabs {
+        width: 100%;
+        gap: 5px;
+        margin-bottom: 15px;
+    }
+
+    .assessment-tab {
+        flex: 1;
+        padding: 9px 12px;
+        font-size: 12px;
+    }
+
+    .assessment-item {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 9px 12px;
+        padding: 16px 0;
+    }
+
+        .assessment-item .item-left {
+            grid-column: 1 / -1;
+            grid-row: 1;
+            width: 100%;
+        }
+
+    .assessment-date {
+        grid-column: 1;
+        grid-row: 2;
+        padding-left: 50px;
+        font-size: 11px;
+    }
+
+    .assessment-status {
+        grid-column: 1;
+        grid-row: 3;
+        justify-self: start;
+        margin-left: 50px;
+    }
+
+    .btn-view {
+        grid-column: 2;
+        grid-row: 2 / span 2;
+        align-self: center;
+        justify-self: end;
+        padding: 8px 14px;
+        font-size: 11px;
+    }
+
+
+    /* CONTENT */
+
+    .content-grid {
+        gap: 14px;
+    }
+
+
+    /* QUICK ACTIONS */
+
+    .quick-actions {
+        margin-top: 22px;
+    }
+
+    .quick-actions-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .quick-action {
+        padding: 13px;
+    }
+
+    .quick-action-icon {
+        width: 38px;
+        height: 38px;
+        min-width: 38px;
+        font-size: 16px;
+    }
+
+    .quick-action-content strong {
+        font-size: 12px;
+    }
+
+    .quick-action-content span {
+        font-size: 10px;
+    }
+
+
+    /* CHAT */
+
+    .chat-bubble {
+        max-width: 90%;
+        font-size: 13px;
+        padding: 12px;
+    }
+}
+
+
+/* ========================================
+   VERY SMALL MOBILE
+======================================== */
+
+@media (max-width: 400px) {
+
+    /* SIDEBAR */
+
+    .sidebar {
+        width: 55px;
+    }
+
+    .main {
+        margin-left: 55px;
+        width: calc(100% - 55px);
+    }
+
+
+    /* PAGE */
+
+    .page {
+        padding: 15px 10px;
+    }
+
+
+    /* TOPBAR */
+
+    .topbar {
+        padding: 0 10px;
+    }
+
+
+    /* TITLE */
+
+    .page-title {
+        font-size: 19px;
+    }
+
+
+    /* ASSESSMENTS */
+
+    .assessment-tabs {
+        gap: 4px;
+    }
+
+    .assessment-tab {
+        padding: 8px 8px;
+        font-size: 11px;
+    }
+
+    .assessment-item {
+        gap: 8px;
+    }
+
+    .assessment-date {
+        font-size: 10px;
+    }
+
+    .assessment-status {
+        margin-left: 50px;
+    }
+
+    .btn-view {
+        padding: 7px 12px;
+        font-size: 11px;
+    }
+
+
+    /* QUICK ACTIONS */
+
+    .quick-action {
+        gap: 10px;
+    }
+
+    .quick-action-arrow {
+        display: none;
     }
 }
