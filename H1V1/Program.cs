@@ -25,21 +25,52 @@ namespace H1V1
             // 3. AI Services & Tools
             builder.Services.AddScoped<AgentToolService>();
 
-            // 4. Configure MEAI Chat Client
-            builder.Services.AddSingleton<IChatClient>(sp =>
-            {
-                string apiKey = builder.Configuration["Gemini:ApiKey"] ?? "YOUR_API_KEY";
+            //// 4. Configure MEAI Chat Client
+            //builder.Services.AddSingleton<IChatClient>(sp =>
+            //{
+            //    string apiKey = builder.Configuration["Gemini:ApiKey"] ?? "YOUR_API_KEY";
 
-                // 1. Create standard OpenAI/Gemini-compatible ChatClient
-                // 2. Convert it into a Microsoft.Extensions.AI IChatClient using .AsChatClient()
-                IChatClient baseClient = new ChatClient("gpt-4o-mini", apiKey).AsIChatClient();
+            //    // 1. Create standard OpenAI/Gemini-compatible ChatClient
+            //    // 2. Convert it into a Microsoft.Extensions.AI IChatClient using .AsChatClient()
+            //    IChatClient baseClient = new ChatClient("gpt-4o-mini", apiKey).AsIChatClient();
 
-                // Wrap with automatic function/tool invocation logic
-                return new ChatClientBuilder(baseClient)
-                    .UseFunctionInvocation()
-                    .Build();
-            });
+            //    // Wrap with automatic function/tool invocation logic
+            //    return new ChatClientBuilder(baseClient)
+            //        .UseFunctionInvocation()
+            //        .Build();
+            //});
 
+            //builder.Services.AddSingleton<IChatClient>(sp =>
+            //{
+            //    var configuration = sp.GetRequiredService<IConfiguration>();
+
+            //    var apiKey = configuration["Gemini:ApiKey"];
+
+            //    if (string.IsNullOrWhiteSpace(apiKey))
+            //    {
+            //        throw new InvalidOperationException(
+            //            "Gemini API key was not found. Configure it using User Secrets with the key 'Gemini:ApiKey'.");
+            //    }
+
+            //    var options = new OpenAI.OpenAIClientOptions
+            //    {
+            //        Endpoint = new Uri(
+            //            "https://generativelanguage.googleapis.com/v1beta/openai/")
+            //    };
+
+            //    IChatClient baseClient =
+            //        new ChatClient(
+            //            model: "gemini-3.8-flash",
+            //            credential: new System.ClientModel.ApiKeyCredential(apiKey),
+            //            options: options
+            //        ).AsIChatClient();
+
+            //    return new ChatClientBuilder(baseClient)
+            //        .UseFunctionInvocation()
+            //        .Build();
+            //});
+
+            // Native Google Gemini client is created inside ChatAgentService
             builder.Services.AddScoped<ChatAgentService>();
             builder.Services.AddControllersWithViews();
 
@@ -60,7 +91,8 @@ namespace H1V1
             app.UseAuthorization();
 
             app.MapControllers();
-            app.MapStaticAssets(); 
+            app.MapStaticAssets();
+
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
