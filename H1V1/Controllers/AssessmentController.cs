@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace H1V1.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/assessments")]
     public class AssessmentController : ControllerBase
     {
         private readonly IAcademicRepository _repo;
@@ -15,8 +15,8 @@ namespace H1V1.Controllers
             _repo = repo;
         }
 
-        // GET: api/assessment/pending/1
-        [HttpGet("pending/{studentId}")]
+        // GET: api/assessments/{studentId}
+        [HttpGet("{studentId}")]
         public async Task<IActionResult> GetPendingAssessments(int studentId)
         {
             var assessments = await _repo.GetPendingAssessmentsAsync(studentId);

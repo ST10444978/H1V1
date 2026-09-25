@@ -1,179 +1,154 @@
-@{
-    ViewData["Title"] = "Study Plan";
+document.addEventListener("DOMContentLoaded", function () {
+    const studentId = 1;
+
+    // 1. AI Chat functionality
+    const chatForm = document.getElementById("chat-form");
+    const chatInput = document.getElementById("chat-input");
+    const chatMessages = document.getElementById("chat-messages");
+    const submitBtn = document.getElementById("chat-submit-btn");
+
+    window.sendChatMessage = async function (customPrompt) {
+        const prompt = customPrompt || (chatInput ? chatInput.value.trim() : "");
+        if (!prompt) return;
+
+        if (chatInput) chatInput.value = "";
+
+        // Render User Message
+        appendUserMessage(prompt);
+
+        // Render Loading Indicator
+        const loadingDiv = appendLoadingMessage();
+
+        try {
+            const response = await fetch("/api/chat", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ studentId: studentId, prompt: prompt })
+            });
+
+            if (!response.ok) {
+                throw new Error("API error " + response.status);
+            }
+
+            const data = await response.json();
+            loadingDiv.remove();
+            appendAiMessage(data.response || "No response received.");
+        } catch (err) {
+            console.error("Chat error:", err);
+            loadingDiv.remove();
+            appendAiMessage("Sorry, I encountered an error calling the API: " + err.message);
+        }
+    };
+
+    function appendUserMessage(text) {
+        if (!chatMessages) return;
+        const msgDiv = document.createElement("div");
+        msgDiv.style.display = "flex";
+        msgDiv.style.justifyContent = "flex-end";
+        msgDiv.innerHTML = `
+            <div style="background:#edf2ff; padding:15px; border-radius:12px; max-width:600px;">
+                ${escapeHtml(text)}
+            </div>`;
+        chatMessages.appendChild(msgDiv);
+        msgDiv.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function appendAiMessage(text) {
+        if (!chatMessages) return;
+        const msgDiv = document.createElement("div");
+        msgDiv.style.display = "flex";
+        msgDiv.style.gap = "15px";
+        msgDiv.innerHTML = `
+            <div class="avatar"><i class="bi bi-robot"></i></div>
+            <div>
+                <strong>EduBuddy</strong>
+                <p style="white-space: pre-wrap;">${escapeHtml(text)}</p>
+            </div>`;
+        chatMessages.appendChild(msgDiv);
+        msgDiv.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function appendLoadingMessage() {
+        const msgDiv = document.createElement("div");
+        msgDiv.style.display = "flex";
+        msgDiv.style.gap = "15px";
+        msgDiv.innerHTML = `
+            <div class="avatar"><i class="bi bi-robot"></i></div>
+            <div>
+                <strong>EduBuddy</strong>
+                <p><em>Thinking...</em></p>
+            </div>`;
+        chatMessages.appendChild(msgDiv);
+        msgDiv.scrollIntoView({ behavior: 'smooth' });
+        return msgDiv;
+    }
+
+    function escapeHtml(str) {
+        return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    }
+
+    // Quick Action button listeners
+    document.querySelectorAll(".quick-action").forEach(button => {
+        button.addEventListener("click", function () {
+            const prompt = this.getAttribute("data-prompt");
+            if (prompt) {
+                sendChatMessage(prompt);
+            }
+        });
+    });
+
+    // View Study Plan Button
+    const viewStudyPlanBtn = document.getElementById("btn-view-study-plan");
+    if (viewStudyPlanBtn) {
+        viewStudyPlanBtn.addEventListener("click", function () {
+            window.location.href = "/StudyPlan";
+        });
+    }
+
+    // Load Pending Assessments dynamically on page load
+    loadPendingAssessments(studentId);
+});
+
+async function loadPendingAssessments(studentId) {
+    const listContainer = document.getElementById("pending-assessments-list");
+    if (!listContainer) return;
+
+    try {
+        const res = await fetch(`/api/assessments/${studentId}`);
+        if (res.ok) {
+            const data = await res.json();
+            if (data && data.length > 0) {
+                listContainer.innerHTML = data.map(a => `
+                    <div class="list-item">
+                        <div>
+                            <strong>${escapeHtml(a.title)}</strong>
+                            <p>${a.courseCode} · Due: ${new Date(a.dueDate).toLocaleDateString()}</p>
+                        </div>
+                        <span class="badge ${a.isCompleted ? 'badge-success' : 'badge-danger'}">
+                            ${a.isCompleted ? 'Completed' : 'Pending'}
+                        </span>
+                        ${!a.isCompleted ? `<button onclick="markAssessmentDone(${a.id})" class="btn-view" style="margin-left:10px;">Mark Done</button>` : ''}
+                    </div>
+                `).join('');
+            }
+        }
+    } catch (e) {
+        console.warn("Could not load pending assessments:", e);
+    }
 }
 
-<div class="page">
+window.markAssessmentDone = async function (id) {
+    try {
+        const res = await fetch(`/api/assessments/complete/${id}`, { method: 'POST' });
+        if (res.ok) {
+            alert("Assessment marked as complete!");
+            loadPendingAssessments(1);
+        }
+    } catch (e) {
+        alert("Error marking assessment complete");
+    }
+};
 
-    <div class="page-header">
-
-        <div>
-
-            <h1 class="page-title">
-                My Study Plan
-            </h1>
-
-            <p class="page-subtitle">
-                AI-generated plan based on your assessments
-                and available time.
-            </p>
-
-        </div>
-
-        <button class="btn-primary">
-            <i class="bi bi-arrow-clockwise"></i>
-            Regenerate Plan
-        </button>
-
-    </div>
-
-
-    <div class="content-grid">
-
-        <div class="card">
-
-            <h3>
-                This Weekend
-            </h3>
-
-
-            <div class="list-item">
-
-                <div>
-
-                    <strong>
-                        09:00 – 10:30
-                    </strong>
-
-                    <p>
-                        C# Test Revision
-                    </p>
-
-                    <small>
-                        Study · 90 min
-                    </small>
-
-                </div>
-
-                <span class="badge badge-success">
-                    Focus
-                </span>
-
-            </div>
-
-
-            <div class="list-item">
-
-                <div>
-
-                    <strong>
-                        10:30 – 10:45
-                    </strong>
-
-                    <p>
-                        Break
-                    </p>
-
-                    <small>
-                        Break · 15 min
-                    </small>
-
-                </div>
-
-                <span class="badge badge-success">
-                    Break
-                </span>
-
-            </div>
-
-
-            <div class="list-item">
-
-                <div>
-
-                    <strong>
-                        10:45 – 12:00
-                    </strong>
-
-                    <p>
-                        Database Research
-                    </p>
-
-                    <small>
-                        Study · 75 min
-                    </small>
-
-                </div>
-
-                <span class="badge badge-success">
-                    Focus
-                </span>
-
-            </div>
-
-
-            <div class="list-item">
-
-                <div>
-
-                    <strong>
-                        12:00 – 12:30
-                    </strong>
-
-                    <p>
-                        Lunch Break
-                    </p>
-
-                    <small>
-                        Break · 30 min
-                    </small>
-
-                </div>
-
-                <span class="badge badge-success">
-                    Break
-                </span>
-
-            </div>
-
-        </div>
-
-
-        <div class="card">
-
-            <h3>
-                <i class="bi bi-lightbulb"></i>
-                Plan Summary
-            </h3>
-
-            <p>
-                Focus on your C# test first,
-                then move to the database assignment.
-            </p>
-
-            <hr />
-
-            <p>
-                Total Study Time:
-                <strong>3.5 hrs</strong>
-            </p>
-
-            <p>
-                Break Time:
-                <strong>0.5 hrs</strong>
-            </p>
-
-            <p>
-                Sessions:
-                <strong>4</strong>
-            </p>
-
-            <button class="btn-primary">
-                <i class="bi bi-check-lg"></i>
-                Mark as Complete
-            </button>
-
-        </div>
-
-    </div>
-
-</div>
+function escapeHtml(str) {
+    return (str || '').replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}

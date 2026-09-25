@@ -5,146 +5,123 @@
 <div class="page">
 
     <div class="page-header">
-
         <div>
             <h1 class="page-title">
                 Assessments
             </h1>
-
             <p class="page-subtitle">
                 Track your upcoming and past assessments.
             </p>
         </div>
 
-        <button class="btn-primary">
+        <button id="btn-add-assessment" class="btn-primary" onclick="addNewAssessmentPrompt()">
             <i class="bi bi-plus-lg"></i>
             Add Assessment
         </button>
-
     </div>
 
-
     <div class="card">
-
-        <div class="assessment-tabs">
-
-            <button class="assessment-tab active">
-                Upcoming (3)
-            </button>
-
-            <button class="assessment-tab">
-                Past (5)
-            </button>
-
+        <div id="assessments-container">
+            <p>Loading assessments from API...</p>
         </div>
-
-
-        <!-- Assessment -->
-
-        <div class="list-item assessment-item">
-
-            <div class="item-left">
-
-                <div class="item-icon">
-                    <i class="bi bi-database"></i>
-                </div>
-
-                <div>
-                    <div class="item-title">
-                        Database Assignment
-                    </div>
-
-                    <div class="item-subtitle">
-                        Database Systems
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="assessment-date">
-                Mon, 29 Sep 2025
-            </div>
-
-            <span class="badge badge-danger assessment-status">
-                3 days left
-            </span>
-
-            <button class="btn-view">
-                View
-            </button>
-
-        </div>
-
-
-        <div class="list-item assessment-item">
-
-            <div class="item-left">
-
-                <div class="item-icon">
-                    <i class="bi bi-code-slash"></i>
-                </div>
-
-                <div>
-                    <div class="item-title">
-                        C# Test
-                    </div>
-
-                    <div class="item-subtitle">
-                        Programming
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="assessment-date">
-                Wed, 30 Sep 2025
-            </div>
-
-            <span class="badge badge-warning assessment-status">
-                5 days left
-            </span>
-
-            <button class="btn-view">
-                View
-            </button>
-
-        </div>
-
-
-        <div class="list-item assessment-item">
-
-            <div class="item-left">
-
-                <div class="item-icon">
-                    <i class="bi bi-globe2"></i>
-                </div>
-
-                <div>
-                    <div class="item-title">
-                        Web Development Project
-                    </div>
-
-                    <div class="item-subtitle">
-                        Web Development
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="assessment-date">
-                Fri, 2 Oct 2025
-            </div>
-
-            <span class="badge badge-success assessment-status">
-                7 days left
-            </span>
-
-            <button class="btn-view">
-                View
-            </button>
-
-        </div>
-
     </div>
 
 </div>
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            loadAssessmentPageData();
+        });
+
+        async function loadAssessmentPageData() {
+            const container = document.getElementById("assessments-container");
+            try {
+                const res = await fetch("/api/assessments/1");
+                if (!res.ok) throw new Error("HTTP " + res.status);
+                const items = await res.json();
+
+                if (!items || items.length === 0) {
+                    container.innerHTML = "<p>No pending assessments found.</p>";
+                    return;
+                }
+
+                container.innerHTML = items.map(item => `
+                    <div class="list-item assessment-item" id="assessment-${item.id}">
+                        <div class="item-left">
+                            <div class="item-icon">
+                                <i class="bi bi-journal-text"></i>
+                            </div>
+                            <div>
+                                <div class="item-title">${escapeHtml(item.title)}</div>
+                                <div class="item-subtitle">${escapeHtml(item.courseCode)}</div>
+                            </div>
+                        </div>
+                        <div class="assessment-date">
+                            ${new Date(item.dueDate).toLocaleDateString()}
+                        </div>
+                        <span class="badge ${item.isCompleted ? 'badge-success' : 'badge-warning'} assessment-status">
+                            ${item.isCompleted ? 'Completed' : 'Pending'}
+                        </span>
+                        ${!item.isCompleted ? `
+                            <button class="btn-primary" style="margin-left:10px;" onclick="completeAssessment(${item.id})">
+                                Mark Complete
+                            </button>
+                        ` : ''}
+                    </div>
+                `).join('');
+            } catch (err) {
+                console.error("Error fetching assessments:", err);
+                container.innerHTML = `<p style="color:red;">Error loading assessments from API.</p>`;
+            }
+        }
+
+        async function completeAssessment(id) {
+            try {
+                const res = await fetch(`/api/assessments/complete/${id}`, { method: 'POST' });
+                if (res.ok) {
+                    alert("Assessment marked complete!");
+                    loadAssessmentPageData();
+                } else {
+                    alert("Failed to update assessment.");
+                }
+            } catch (err) {
+                alert("Error connecting to API: " + err.message);
+            }
+        }
+
+        async function addNewAssessmentPrompt() {
+            const title = prompt("Enter assessment title (e.g. C# Final Exam):");
+            if (!title) return;
+            const courseCode = prompt("Enter course code (e.g. CS101):") || "CS101";
+
+            const newAssessment = {
+                studentId: 1,
+                title: title,
+                courseCode: courseCode,
+                dueDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
+                isCompleted: false
+            };
+
+            try {
+                const res = await fetch("/api/assessments", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(newAssessment)
+                });
+                if (res.ok) {
+                    alert("Assessment created successfully!");
+                    loadAssessmentPageData();
+                } else {
+                    alert("Failed to create assessment.");
+                }
+            } catch (err) {
+                alert("Error creating assessment: " + err.message);
+            }
+        }
+
+        function escapeHtml(str) {
+            return (str || '').replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        }
+    </script>
+}
