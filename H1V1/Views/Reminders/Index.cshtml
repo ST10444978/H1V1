@@ -26,7 +26,7 @@
     </div>
 
 
-    <div class="card">
+    <div class="card" id="remindersContainer">
 
         <div class="list-item">
 
@@ -147,3 +147,42 @@
     </div>
 
 </div>
+
+@section Scripts {
+    <script>
+        async function loadRemindersList() {
+            try {
+                const response = await fetch('/api/reminders');
+                if (!response.ok) {
+                    throw new Error('HTTP ' + response.status);
+                }
+                const reminders = await response.json();
+                if (Array.isArray(reminders) && reminders.length > 0) {
+                    const container = document.getElementById('remindersContainer');
+                    container.innerHTML = reminders.map(r => `
+                        <div class="list-item">
+                            <div class="item-left">
+                                <div class="item-icon">
+                                    <i class="bi bi-journal-text"></i>
+                                </div>
+                                <div>
+                                    <div class="item-title">${r.title}</div>
+                                    <div class="item-subtitle">${r.dateTimeDisplay}</div>
+                                </div>
+                            </div>
+                            <span class="badge ${r.priority === 'High' ? 'badge-danger' : 'badge-warning'}">
+                                ${r.priority}
+                            </span>
+                            <button><i class="bi bi-check-lg"></i> Done</button>
+                            <button><i class="bi bi-alarm"></i> Snooze</button>
+                        </div>
+                    `).join('');
+                }
+            } catch (error) {
+                console.error("Error loading reminders:", error);
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", loadRemindersList);
+    </script>
+}
