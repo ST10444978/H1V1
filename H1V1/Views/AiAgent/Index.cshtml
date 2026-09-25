@@ -5,295 +5,156 @@
 <div class="page">
 
     <div class="page-header">
-
         <div>
-
             <h1 class="page-title">
                 <i class="bi bi-robot"></i>
                 EduBuddy AI
             </h1>
-
             <p class="page-subtitle">
                 Your academic success assistant
             </p>
-
         </div>
-
     </div>
-
 
     <div class="card">
 
-        <!-- USER MESSAGE -->
+        <!-- CHAT CONTAINER -->
+        <div id="chat-messages" style="display:flex; flex-direction:column; gap:20px; margin-bottom:25px;">
 
-        <div style="
-            display:flex;
-            justify-content:flex-end;
-            margin-bottom:20px;">
+            <!-- USER MESSAGE -->
+            <div style="display:flex; justify-content:flex-end;">
+                <div style="background:#edf2ff; padding:15px; border-radius:12px; max-width:600px;">
+                    I have a C# test Friday and a database assignment due Monday.
+                    <br><br>
+                    I have 4 hours available this weekend.
+                </div>
+            </div>
 
-            <div style="
-                background:#edf2ff;
-                padding:15px;
-                border-radius:12px;
-                max-width:600px;">
-
-                I have a C# test Friday and a
-                database assignment due Monday.
-
-                <br><br>
-
-                I have 4 hours available this weekend.
-
+            <!-- AI RESPONSE -->
+            <div style="display:flex; gap:15px;">
+                <div class="avatar">
+                    <i class="bi bi-robot"></i>
+                </div>
+                <div>
+                    <strong>EduBuddy</strong>
+                    <p>I've analyzed your workload. Ask me anything or click a quick action below!</p>
+                </div>
             </div>
 
         </div>
-
-
-        <!-- AI RESPONSE -->
-
-        <div style="
-            display:flex;
-            gap:15px;
-            margin-bottom:25px;">
-
-            <div class="avatar">
-                <i class="bi bi-robot"></i>
-            </div>
-
-            <div>
-
-                <strong>
-                    EduBuddy
-                </strong>
-
-                <p>
-                    I've analysed your workload.
-                    Here's what I found:
-                </p>
-
-            </div>
-
-        </div>
-
 
         <!-- ASSESSMENTS + PLAN -->
-
-        <div class="content-grid">
+        <div class="content-grid" style="margin-bottom: 25px;">
 
             <div class="card">
-
-                <h3>
-                    Your Assessments
-                </h3>
-
-                <div class="list-item">
-
-                    <div>
-
-                        <strong>
-                            C# Test
-                        </strong>
-
-                        <p>
-                            Friday, 2 Oct
-                        </p>
-
+                <h3>Your Assessments</h3>
+                <div id="pending-assessments-list">
+                    <div class="list-item">
+                        <div>
+                            <strong>Database Assignment</strong>
+                            <p>Monday, 5 Oct</p>
+                        </div>
+                        <span class="badge badge-danger">High priority</span>
                     </div>
-
-                    <span class="badge badge-danger">
-                        High priority
-                    </span>
-
-                </div>
-
-
-                <div class="list-item">
-
-                    <div>
-
-                        <strong>
-                            Database Assignment
-                        </strong>
-
-                        <p>
-                            Monday, 5 Oct
-                        </p>
-
+                    <div class="list-item">
+                        <div>
+                            <strong>C# Test</strong>
+                            <p>Friday, 2 Oct</p>
+                        </div>
+                        <span class="badge badge-danger">High priority</span>
                     </div>
-
-                    <span class="badge badge-danger">
-                        High priority
-                    </span>
-
                 </div>
-
             </div>
 
-
             <div class="card">
-
                 <h3>
                     <i class="bi bi-calendar-event"></i>
                     Recommended Study Plan
                 </h3>
-
-                <p>
-                    I've created a study plan based on
-                    your available time.
-                </p>
-
-                <button class="btn-primary">
+                <p>I can generate and save a study plan tailored to your upcoming assessments.</p>
+                <button type="button" id="btn-view-study-plan" class="btn-primary">
                     View Study Plan
                 </button>
-
             </div>
 
         </div>
 
-
         <!-- QUICK ACTIONS -->
-
         <div class="quick-actions">
 
             <div class="quick-actions-header">
                 <div>
-                    <h3>
-                        Quick Actions
-                    </h3>
-
-                    <p>
-                        You can also ask EduBuddy to:
-                    </p>
+                    <h3>Quick Actions</h3>
+                    <p>You can also ask EduBuddy to:</p>
                 </div>
             </div>
 
-
             <div class="quick-actions-grid">
 
-                <button type="button" class="quick-action">
-
+                <button type="button" class="quick-action" data-prompt="Find study resources for Data Structures and Calculus.">
                     <div class="quick-action-icon">
                         <i class="bi bi-book"></i>
                     </div>
-
                     <div class="quick-action-content">
-
-                        <strong>
-                            Find Study Resources
-                        </strong>
-
-                        <span>
-                            Find resources for your subjects
-                        </span>
-
+                        <strong>Find Study Resources</strong>
+                        <span>Find resources for your subjects</span>
                     </div>
-
                     <i class="bi bi-arrow-right quick-action-arrow"></i>
-
                 </button>
 
-
-                <button type="button" class="quick-action">
-
+                <button type="button" class="quick-action" data-prompt="What are my upcoming pending assessments?">
                     <div class="quick-action-icon">
                         <i class="bi bi-clipboard-check"></i>
                     </div>
-
                     <div class="quick-action-content">
-
-                        <strong>
-                            Check Assessments
-                        </strong>
-
-                        <span>
-                            View upcoming deadlines
-                        </span>
-
+                        <strong>Check Assessments</strong>
+                        <span>View upcoming deadlines</span>
                     </div>
-
                     <i class="bi bi-arrow-right quick-action-arrow"></i>
-
                 </button>
 
-
-                <button type="button" class="quick-action">
-
+                <button type="button" class="quick-action" data-prompt="Remind me about my upcoming C# test and Database Assignment.">
                     <div class="quick-action-icon">
                         <i class="bi bi-bell"></i>
                     </div>
-
                     <div class="quick-action-content">
-
-                        <strong>
-                            Set a Reminder
-                        </strong>
-
-                        <span>
-                            Never miss an important deadline
-                        </span>
-
+                        <strong>Set a Reminder</strong>
+                        <span>Never miss an important deadline</span>
                     </div>
-
                     <i class="bi bi-arrow-right quick-action-arrow"></i>
-
                 </button>
 
-
-                <button type="button" class="quick-action">
-
+                <button type="button" class="quick-action" data-prompt="Generate a customized study plan for me this weekend and save it.">
                     <div class="quick-action-icon">
                         <i class="bi bi-sliders"></i>
                     </div>
-
                     <div class="quick-action-content">
-
-                        <strong>
-                            Adjust My Plan
-                        </strong>
-
-                        <span>
-                            Change your study schedule
-                        </span>
-
+                        <strong>Adjust My Plan</strong>
+                        <span>Change your study schedule</span>
                     </div>
-
                     <i class="bi bi-arrow-right quick-action-arrow"></i>
-
                 </button>
 
             </div>
 
         </div>
 
-
         <!-- CHAT INPUT -->
-
         <br />
+        <form id="chat-form" onsubmit="event.preventDefault(); sendChatMessage();">
+            <div style="display:flex; gap:10px;">
+                <input id="chat-input"
+                       type="text"
+                       class="search"
+                       style="flex:1"
+                       placeholder="Ask EduBuddy anything..."
+                       required />
 
-        <form asp-action="Chat"
-              method="post">
-
-            <div style="
-                display:flex;
-                gap:10px;">
-
-                <input
-                    name="message"
-                    class="search"
-                    style="flex:1"
-                    placeholder="Ask EduBuddy anything..." />
-
-                <button
-                    type="submit"
-                    class="btn-primary">
-
+                <button id="chat-submit-btn" type="submit" class="btn-primary">
                     Send
                     <i class="bi bi-send"></i>
-
                 </button>
-
             </div>
-
         </form>
 
     </div>

@@ -18,6 +18,10 @@ namespace H1V1.Data
             modelBuilder.Entity<Student>().HasData(
                 new Student { Id = 1, Name = "Demo Student", Major = "Computer Science" }
             );
+            modelBuilder.Entity<Resource>().HasData(
+                new Resource { Id = 1, CourseOrTopic = "Data Structures", Title = "Data Structures Basics", Url = "https://example.com/ds", ResourceType = "Article" },
+                new Resource { Id = 2, CourseOrTopic = "Calculus", Title = "Calculus Overview", Url = "https://example.com/calc", ResourceType = "Video" }
+            );
         }
     }
 }
