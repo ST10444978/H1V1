@@ -4,10 +4,10 @@
 
 <div class="page">
 
+    <!-- Page Header -->
     <div class="page-header">
 
         <div>
-
             <h1 class="page-title">
                 Reminders
             </h1>
@@ -15,20 +15,21 @@
             <p class="page-subtitle">
                 Stay on track with your deadlines and study sessions.
             </p>
-
         </div>
 
-        <button class="btn-primary">
+        <button type="button" class="btn-primary">
             <i class="bi bi-plus-lg"></i>
-            New Reminder
+            <span>New Reminder</span>
         </button>
 
     </div>
 
 
-    <div class="card">
+    <!-- Reminders Card -->
+    <div class="card reminders-card">
 
-        <div class="list-item">
+        <!-- Reminder 1 -->
+        <div class="list-item reminder-item">
 
             <div class="item-left">
 
@@ -36,7 +37,7 @@
                     <i class="bi bi-journal-text"></i>
                 </div>
 
-                <div>
+                <div class="reminder-info">
 
                     <div class="item-title">
                         Database Assignment
@@ -50,24 +51,30 @@
 
             </div>
 
-            <span class="badge badge-danger">
-                High
-            </span>
 
-            <button>
-                <i class="bi bi-check-lg"></i>
-                Done
-            </button>
+            <div class="reminder-actions">
 
-            <button>
-                <i class="bi bi-alarm"></i>
-                Snooze
-            </button>
+                <span class="badge badge-danger reminder-priority">
+                    High
+                </span>
+
+                <button type="button" class="btn-reminder btn-done">
+                    <i class="bi bi-check-lg"></i>
+                    <span>Done</span>
+                </button>
+
+                <button type="button" class="btn-reminder btn-snooze">
+                    <i class="bi bi-alarm"></i>
+                    <span>Snooze</span>
+                </button>
+
+            </div>
 
         </div>
 
 
-        <div class="list-item">
+        <!-- Reminder 2 -->
+        <div class="list-item reminder-item">
 
             <div class="item-left">
 
@@ -75,7 +82,7 @@
                     <i class="bi bi-journal-text"></i>
                 </div>
 
-                <div>
+                <div class="reminder-info">
 
                     <div class="item-title">
                         C# Test
@@ -89,24 +96,30 @@
 
             </div>
 
-            <span class="badge badge-danger">
-                High
-            </span>
 
-            <button>
-                <i class="bi bi-check-lg"></i>
-                Done
-            </button>
+            <div class="reminder-actions">
 
-            <button>
-                <i class="bi bi-alarm"></i>
-                Snooze
-            </button>
+                <span class="badge badge-danger reminder-priority">
+                    High
+                </span>
+
+                <button type="button" class="btn-reminder btn-done">
+                    <i class="bi bi-check-lg"></i>
+                    <span>Done</span>
+                </button>
+
+                <button type="button" class="btn-reminder btn-snooze">
+                    <i class="bi bi-alarm"></i>
+                    <span>Snooze</span>
+                </button>
+
+            </div>
 
         </div>
 
 
-        <div class="list-item">
+        <!-- Reminder 3 -->
+        <div class="list-item reminder-item">
 
             <div class="item-left">
 
@@ -114,7 +127,7 @@
                     <i class="bi bi-calendar-event"></i>
                 </div>
 
-                <div>
+                <div class="reminder-info">
 
                     <div class="item-title">
                         Study Plan Session
@@ -128,19 +141,24 @@
 
             </div>
 
-            <span class="badge badge-warning">
-                Medium
-            </span>
 
-            <button>
-                <i class="bi bi-check-lg"></i>
-                Done
-            </button>
+            <div class="reminder-actions">
 
-            <button>
-                <i class="bi bi-alarm"></i>
-                Snooze
-            </button>
+                <span class="badge badge-warning reminder-priority">
+                    Medium
+                </span>
+
+                <button type="button" class="btn-reminder btn-done">
+                    <i class="bi bi-check-lg"></i>
+                    <span>Done</span>
+                </button>
+
+                <button type="button" class="btn-reminder btn-snooze">
+                    <i class="bi bi-alarm"></i>
+                    <span>Snooze</span>
+                </button>
+
+            </div>
 
         </div>
 

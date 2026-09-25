@@ -4,6 +4,7 @@
 
 <div class="page">
 
+    <!-- PAGE HEADER -->
     <div class="page-header">
 
         <div>
@@ -19,7 +20,7 @@
 
         </div>
 
-        <select>
+        <select class="resource-subject-select">
             <option>All Subjects</option>
             <option>Programming</option>
             <option>Database Systems</option>
@@ -29,37 +30,77 @@
     </div>
 
 
-    <div class="card">
+    <!-- RESOURCES CARD -->
+    <div class="card resources-card">
 
-        <div style="margin-bottom:20px;">
+        <!-- RESOURCE TABS -->
+        <div class="resource-tabs" role="tablist">
 
-            <button class="btn-primary">
-                All
+            <button type="button"
+                    class="resource-tab active"
+                    role="tab">
+                <i class="bi bi-grid"></i>
+                <span>All</span>
             </button>
 
-            <button>Videos</button>
-            <button>Articles</button>
-            <button>Practice</button>
-            <button>Books</button>
+            <button type="button"
+                    class="resource-tab"
+                    role="tab">
+                <i class="bi bi-play-circle"></i>
+                <span>Videos</span>
+            </button>
+
+            <button type="button"
+                    class="resource-tab"
+                    role="tab">
+                <i class="bi bi-file-text"></i>
+                <span>Articles</span>
+            </button>
+
+            <button type="button"
+                    class="resource-tab"
+                    role="tab">
+                <i class="bi bi-pencil-square"></i>
+                <span>Practice</span>
+            </button>
+
+            <button type="button"
+                    class="resource-tab"
+                    role="tab">
+                <i class="bi bi-book"></i>
+                <span>Books</span>
+            </button>
 
         </div>
 
 
-        <h3>
-            Recommended for: C# Test
-        </h3>
+        <!-- RECOMMENDED SECTION -->
+        <div class="resources-heading">
+
+            <h3>
+                <i class="bi bi-stars"></i>
+                Recommended for: C# Test
+            </h3>
+
+        </div>
 
 
-        <div class="content-grid">
+        <!-- RESOURCE GRID -->
+        <div class="content-grid resources-grid">
 
-            <div class="card">
+            <!-- RESOURCE 1 -->
+            <div class="card resource-card">
 
-                <div class="item-icon">
-                    ▶
+                <div class="resource-icon">
+                    <i class="bi bi-play-fill"></i>
+                </div>
+
+                <div class="resource-type">
+                    VIDEO
                 </div>
 
                 <h3>
-                    C# Classes & Objects
+                    C# Classes &amp; Objects
                 </h3>
 
                 <p>
@@ -67,23 +108,35 @@
                     objects and methods.
                 </p>
 
-                <small>
-                    Video · 12 min
-                </small>
+                <div class="resource-meta">
+                    <span>
+                        <i class="bi bi-play-circle"></i>
+                        Video
+                    </span>
 
-                <br><br>
+                    <span>
+                        <i class="bi bi-clock"></i>
+                        12 min
+                    </span>
+                </div>
 
-                <button class="btn-primary">
+                <button type="button" class="btn-primary resource-button">
                     View Resource
+                    <i class="bi bi-arrow-right"></i>
                 </button>
 
             </div>
 
 
-            <div class="card">
+            <!-- RESOURCE 2 -->
+            <div class="card resource-card">
 
-                <div class="item-icon">
-                    ▶
+                <div class="resource-icon">
+                    <i class="bi bi-play-fill"></i>
+                </div>
+
+                <div class="resource-type">
+                    VIDEO
                 </div>
 
                 <h3>
@@ -95,14 +148,21 @@
                     Programming concepts.
                 </p>
 
-                <small>
-                    Video · 25 min
-                </small>
+                <div class="resource-meta">
+                    <span>
+                        <i class="bi bi-play-circle"></i>
+                        Video
+                    </span>
 
-                <br><br>
+                    <span>
+                        <i class="bi bi-clock"></i>
+                        25 min
+                    </span>
+                </div>
 
-                <button class="btn-primary">
+                <button type="button" class="btn-primary resource-button">
                     View Resource
+                    <i class="bi bi-arrow-right"></i>
                 </button>
 
             </div>

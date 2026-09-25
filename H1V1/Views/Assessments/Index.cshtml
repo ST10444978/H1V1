@@ -4,43 +4,43 @@
 
 <div class="page">
 
+    <!-- Page Header -->
     <div class="page-header">
 
         <div>
-            <h1 class="page-title">
-                Assessments
-            </h1>
+            <h1 class="page-title">Assessments</h1>
 
             <p class="page-subtitle">
                 Track your upcoming and past assessments.
             </p>
         </div>
 
-        <button class="btn-primary">
+        <button type="button" class="btn-primary">
             <i class="bi bi-plus-lg"></i>
-            Add Assessment
+            <span>Add Assessment</span>
         </button>
 
     </div>
 
 
-    <div class="card">
+    <!-- Assessments Card -->
+    <div class="card assessments-card">
 
+        <!-- Tabs -->
         <div class="assessment-tabs">
 
-            <button class="assessment-tab active">
-                Upcoming (3)
+            <button type="button" class="assessment-tab active">
+                Upcoming <span>(3)</span>
             </button>
 
-            <button class="assessment-tab">
-                Past (5)
+            <button type="button" class="assessment-tab">
+                Past <span>(5)</span>
             </button>
 
         </div>
 
 
-        <!-- Assessment -->
-
+        <!-- Assessment 1 -->
         <div class="list-item assessment-item">
 
             <div class="item-left">
@@ -49,7 +49,7 @@
                     <i class="bi bi-database"></i>
                 </div>
 
-                <div>
+                <div class="assessment-info">
                     <div class="item-title">
                         Database Assignment
                     </div>
@@ -61,21 +61,28 @@
 
             </div>
 
-            <div class="assessment-date">
-                Mon, 29 Sep 2025
+            <div class="assessment-meta">
+
+                <div class="assessment-date">
+                    <i class="bi bi-calendar3"></i>
+                    <span>Mon, 29 Sep 2025</span>
+                </div>
+
+                <span class="badge badge-danger assessment-status">
+                    3 days left
+                </span>
+
+                <button type="button" class="btn-view">
+                    View
+                    <i class="bi bi-chevron-right"></i>
+                </button>
+
             </div>
-
-            <span class="badge badge-danger assessment-status">
-                3 days left
-            </span>
-
-            <button class="btn-view">
-                View
-            </button>
 
         </div>
 
 
+        <!-- Assessment 2 -->
         <div class="list-item assessment-item">
 
             <div class="item-left">
@@ -84,7 +91,7 @@
                     <i class="bi bi-code-slash"></i>
                 </div>
 
-                <div>
+                <div class="assessment-info">
                     <div class="item-title">
                         C# Test
                     </div>
@@ -96,21 +103,28 @@
 
             </div>
 
-            <div class="assessment-date">
-                Wed, 30 Sep 2025
+            <div class="assessment-meta">
+
+                <div class="assessment-date">
+                    <i class="bi bi-calendar3"></i>
+                    <span>Wed, 30 Sep 2025</span>
+                </div>
+
+                <span class="badge badge-warning assessment-status">
+                    5 days left
+                </span>
+
+                <button type="button" class="btn-view">
+                    View
+                    <i class="bi bi-chevron-right"></i>
+                </button>
+
             </div>
-
-            <span class="badge badge-warning assessment-status">
-                5 days left
-            </span>
-
-            <button class="btn-view">
-                View
-            </button>
 
         </div>
 
 
+        <!-- Assessment 3 -->
         <div class="list-item assessment-item">
 
             <div class="item-left">
@@ -119,7 +133,7 @@
                     <i class="bi bi-globe2"></i>
                 </div>
 
-                <div>
+                <div class="assessment-info">
                     <div class="item-title">
                         Web Development Project
                     </div>
@@ -131,17 +145,23 @@
 
             </div>
 
-            <div class="assessment-date">
-                Fri, 2 Oct 2025
+            <div class="assessment-meta">
+
+                <div class="assessment-date">
+                    <i class="bi bi-calendar3"></i>
+                    <span>Fri, 2 Oct 2025</span>
+                </div>
+
+                <span class="badge badge-success assessment-status">
+                    7 days left
+                </span>
+
+                <button type="button" class="btn-view">
+                    View
+                    <i class="bi bi-chevron-right"></i>
+                </button>
+
             </div>
-
-            <span class="badge badge-success assessment-status">
-                7 days left
-            </span>
-
-            <button class="btn-view">
-                View
-            </button>
 
         </div>
 

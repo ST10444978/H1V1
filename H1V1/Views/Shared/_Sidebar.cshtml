@@ -59,7 +59,7 @@
 
         <a asp-controller="Settings"
            asp-action="Index"
-           class="nav-item">
+           class="nav-item @(controller == "Settings" ? "active" : "")">
             <i class="bi bi-gear"></i>
             <span>Settings</span>
         </a>

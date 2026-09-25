@@ -7,169 +7,526 @@
     <div class="page-header">
 
         <div>
-
             <h1 class="page-title">
-                My Study Plan
+                <i class="bi bi-calendar2-week"></i>
+                Study Plan
             </h1>
 
             <p class="page-subtitle">
-                AI-generated plan based on your assessments
-                and available time.
+                Organise your study sessions and stay on track with your goals.
             </p>
+        </div>
+
+        <button type="button" class="btn-primary">
+            <i class="bi bi-plus-lg"></i>
+            <span>Add Study Session</span>
+        </button>
+
+    </div>
+
+    <div class="stat-grid">
+
+        <!-- Study Hours -->
+        <div class="stat-card green">
+
+            <div>
+                <i class="bi bi-clock"></i>
+            </div>
+
+            <div class="stat-value">
+                2.5 hrs
+            </div>
+
+            <div class="stat-label">
+                Study time available
+            </div>
 
         </div>
 
-        <button class="btn-primary">
-            <i class="bi bi-arrow-clockwise"></i>
-            Regenerate Plan
-        </button>
+
+        <!-- Sessions -->
+        <div class="stat-card blue">
+
+            <div>
+                <i class="bi bi-journal-check"></i>
+            </div>
+
+            <div class="stat-value">
+                4
+            </div>
+
+            <div class="stat-label">
+                Sessions planned
+            </div>
+
+        </div>
+
+
+        <!-- Progress -->
+        <div class="stat-card purple">
+
+            <div>
+                <i class="bi bi-graph-up-arrow"></i>
+            </div>
+
+            <div class="stat-value">
+                68%
+            </div>
+
+            <div class="stat-label">
+                Weekly progress
+            </div>
+
+        </div>
 
     </div>
 
 
     <div class="content-grid">
 
-        <div class="card">
+        <div class="card study-plan-card">
 
-            <h3>
-                This Weekend
-            </h3>
-
-
-            <div class="list-item">
+            <div class="dashboard-card-header">
 
                 <div>
-
-                    <strong>
-                        09:00 – 10:30
-                    </strong>
+                    <h3>
+                        <i class="bi bi-calendar-check"></i>
+                        Today's Study Plan
+                    </h3>
 
                     <p>
-                        C# Test Revision
+                        Thursday, 25 September
                     </p>
-
-                    <small>
-                        Study · 90 min
-                    </small>
-
                 </div>
 
-                <span class="badge badge-success">
-                    Focus
-                </span>
+                <button type="button" class="btn-outline">
+                    <i class="bi bi-calendar3"></i>
+                    <span>View Week</span>
+                </button>
 
             </div>
 
 
-            <div class="list-item">
+            <!-- Session 1 -->
 
-                <div>
+            <div class="study-session">
 
-                    <strong>
-                        10:30 – 10:45
-                    </strong>
+                <div class="study-session-time">
+                    09:00
+                </div>
 
-                    <p>
-                        Break
-                    </p>
+                <div class="item-icon">
+                    <i class="bi bi-database"></i>
+                </div>
 
-                    <small>
-                        Break · 15 min
-                    </small>
+                <div class="study-session-info">
+
+                    <h4 class="study-session-title">
+                        Database Systems
+                    </h4>
+
+                    <div class="study-session-meta">
+                        <span>
+                            <i class="bi bi-clock"></i>
+                            45 min
+                        </span>
+
+                        <span class="badge-focus">
+                            Focus
+                        </span>
+                    </div>
 
                 </div>
 
-                <span class="badge badge-success">
-                    Break
-                </span>
+                <button type="button" class="btn-view">
+                    Start
+                    <i class="bi bi-play-fill"></i>
+                </button>
 
             </div>
 
 
-            <div class="list-item">
+            <!-- Session 2 -->
 
-                <div>
+            <div class="study-session">
 
-                    <strong>
-                        10:45 – 12:00
-                    </strong>
+                <div class="study-session-time">
+                    10:00
+                </div>
 
-                    <p>
-                        Database Research
-                    </p>
+                <div class="item-icon">
+                    <i class="bi bi-cup-hot"></i>
+                </div>
 
-                    <small>
-                        Study · 75 min
-                    </small>
+                <div class="study-session-info">
+
+                    <h4 class="study-session-title">
+                        Short Break
+                    </h4>
+
+                    <div class="study-session-meta">
+                        <span>
+                            <i class="bi bi-clock"></i>
+                            15 min
+                        </span>
+
+                        <span class="badge-break">
+                            Break
+                        </span>
+                    </div>
 
                 </div>
 
-                <span class="badge badge-success">
-                    Focus
-                </span>
+                <button type="button" class="btn-view">
+                    <i class="bi bi-check-lg"></i>
+                    Done
+                </button>
 
             </div>
 
 
-            <div class="list-item">
+            <!-- Session 3 -->
 
-                <div>
+            <div class="study-session">
 
-                    <strong>
-                        12:00 – 12:30
-                    </strong>
+                <div class="study-session-time">
+                    10:15
+                </div>
 
-                    <p>
-                        Lunch Break
-                    </p>
+                <div class="item-icon">
+                    <i class="bi bi-code-slash"></i>
+                </div>
 
-                    <small>
-                        Break · 30 min
-                    </small>
+                <div class="study-session-info">
+
+                    <h4 class="study-session-title">
+                        C# Programming
+                    </h4>
+
+                    <div class="study-session-meta">
+                        <span>
+                            <i class="bi bi-clock"></i>
+                            60 min
+                        </span>
+
+                        <span class="badge-focus">
+                            Focus
+                        </span>
+                    </div>
 
                 </div>
 
-                <span class="badge badge-success">
-                    Break
-                </span>
+                <button type="button" class="btn-view">
+                    Start
+                    <i class="bi bi-play-fill"></i>
+                </button>
+
+            </div>
+
+
+            <!-- Session 4 -->
+
+            <div class="study-session">
+
+                <div class="study-session-time">
+                    11:30
+                </div>
+
+                <div class="item-icon">
+                    <i class="bi bi-globe2"></i>
+                </div>
+
+                <div class="study-session-info">
+
+                    <h4 class="study-session-title">
+                        Web Development
+                    </h4>
+
+                    <div class="study-session-meta">
+                        <span>
+                            <i class="bi bi-clock"></i>
+                            45 min
+                        </span>
+
+                        <span class="badge-focus">
+                            Focus
+                        </span>
+                    </div>
+
+                </div>
+
+                <button type="button" class="btn-view">
+                    Start
+                    <i class="bi bi-play-fill"></i>
+                </button>
 
             </div>
 
         </div>
 
+        <div>
 
-        <div class="card">
+
+            <!-- Weekly Progress -->
+
+            <div class="card">
+
+                <div class="dashboard-card-header">
+
+                    <div>
+                        <h3>
+                            <i class="bi bi-bar-chart"></i>
+                            Weekly Progress
+                        </h3>
+
+                        <p>
+                            Your study activity this week.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="study-progress">
+
+                    <div class="study-progress-header">
+
+                        <span>
+                            Study goal
+                        </span>
+
+                        <strong>
+                            6.5 / 10 hrs
+                        </strong>
+
+                    </div>
+
+                    <div class="progress-bar">
+
+                        <div class="progress-fill"
+                             style="width: 65%;">
+                        </div>
+
+                    </div>
+
+                    <p class="study-progress-text">
+                        3.5 hours remaining this week.
+                    </p>
+
+                </div>
+
+
+                <div class="study-progress-stats">
+
+                    <div>
+                        <strong>4</strong>
+                        <span>Sessions</span>
+                    </div>
+
+                    <div>
+                        <strong>6.5h</strong>
+                        <span>Completed</span>
+                    </div>
+
+                    <div>
+                        <strong>65%</strong>
+                        <span>Progress</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Upcoming Assessments -->
+
+            <div class="card study-upcoming-card">
+
+                <div class="dashboard-card-header">
+
+                    <div>
+                        <h3>
+                            <i class="bi bi-exclamation-circle"></i>
+                            Upcoming
+                        </h3>
+
+                        <p>
+                            Assessments to prepare for.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="list-item">
+
+                    <div class="item-left">
+
+                        <div class="item-icon">
+                            <i class="bi bi-database"></i>
+                        </div>
+
+                        <div>
+
+                            <div class="item-title">
+                                Database Assignment
+                            </div>
+
+                            <div class="item-subtitle">
+                                3 days left
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <span class="badge badge-danger">
+                        Urgent
+                    </span>
+
+                </div>
+
+
+                <div class="list-item">
+
+                    <div class="item-left">
+
+                        <div class="item-icon">
+                            <i class="bi bi-code-slash"></i>
+                        </div>
+
+                        <div>
+
+                            <div class="item-title">
+                                C# Test
+                            </div>
+
+                            <div class="item-subtitle">
+                                5 days left
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <span class="badge badge-warning">
+                        Soon
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="quick-actions">
+
+        <div class="quick-actions-header">
 
             <h3>
-                <i class="bi bi-lightbulb"></i>
-                Plan Summary
+                Quick Actions
             </h3>
 
             <p>
-                Focus on your C# test first,
-                then move to the database assignment.
+                Get things done faster.
             </p>
 
-            <hr />
+        </div>
 
-            <p>
-                Total Study Time:
-                <strong>3.5 hrs</strong>
-            </p>
 
-            <p>
-                Break Time:
-                <strong>0.5 hrs</strong>
-            </p>
+        <div class="quick-actions-grid">
 
-            <p>
-                Sessions:
-                <strong>4</strong>
-            </p>
+            <button type="button" class="quick-action">
 
-            <button class="btn-primary">
-                <i class="bi bi-check-lg"></i>
-                Mark as Complete
+                <div class="quick-action-icon">
+                    <i class="bi bi-plus-lg"></i>
+                </div>
+
+                <div class="quick-action-content">
+
+                    <strong>
+                        Add Study Session
+                    </strong>
+
+                    <span>
+                        Schedule a new focus session.
+                    </span>
+
+                </div>
+
+                <i class="bi bi-arrow-right quick-action-arrow"></i>
+
+            </button>
+
+
+            <button type="button" class="quick-action">
+
+                <div class="quick-action-icon">
+                    <i class="bi bi-stopwatch"></i>
+                </div>
+
+                <div class="quick-action-content">
+
+                    <strong>
+                        Start Pomodoro
+                    </strong>
+
+                    <span>
+                        Begin a focused study session.
+                    </span>
+
+                </div>
+
+                <i class="bi bi-arrow-right quick-action-arrow"></i>
+
+            </button>
+
+
+            <button type="button" class="quick-action">
+
+                <div class="quick-action-icon">
+                    <i class="bi bi-calendar3"></i>
+                </div>
+
+                <div class="quick-action-content">
+
+                    <strong>
+                        View Calendar
+                    </strong>
+
+                    <span>
+                        See your complete study schedule.
+                    </span>
+
+                </div>
+
+                <i class="bi bi-arrow-right quick-action-arrow"></i>
+
+            </button>
+
+
+            <button type="button" class="quick-action">
+
+                <div class="quick-action-icon">
+                    <i class="bi bi-graph-up"></i>
+                </div>
+
+                <div class="quick-action-content">
+
+                    <strong>
+                        View Progress
+                    </strong>
+
+                    <span>
+                        Check your study performance.
+                    </span>
+
+                </div>
+
+                <i class="bi bi-arrow-right quick-action-arrow"></i>
+
             </button>
 
         </div>
