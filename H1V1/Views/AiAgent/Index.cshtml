@@ -19,61 +19,39 @@
     <div class="card">
 
         <!-- CHAT CONTAINER -->
-        <div id="chat-messages" style="display:flex; flex-direction:column; gap:20px; margin-bottom:25px;">
+        <div id="chat-messages" style="display:flex; flex-direction:column; gap:20px; margin-bottom:25px; min-height: 200px; max-height: 500px; overflow-y: auto; padding-right: 10px;">
 
-            <!-- USER MESSAGE -->
-            <div style="display:flex; justify-content:flex-end;">
-                <div style="background:#edf2ff; padding:15px; border-radius:12px; max-width:600px;">
-                    I have a C# test Friday and a database assignment due Monday.
-                    <br><br>
-                    I have 4 hours available this weekend.
-                </div>
-            </div>
-
-            <!-- AI RESPONSE -->
+            <!-- INITIAL WELCOME MESSAGE -->
             <div style="display:flex; gap:15px;">
                 <div class="avatar">
                     <i class="bi bi-robot"></i>
                 </div>
-                <div>
-                    <strong>EduBuddy</strong>
-                    <p>I've analyzed your workload. Ask me anything or click a quick action below!</p>
+                <div style="background:#f8fafc; padding:15px; border-radius:12px; border:1px solid #e2e8f0; max-width:650px;">
+                    <strong style="color:#2563eb;">EduBuddy</strong>
+                    <p style="margin-top:5px; margin-bottom:0;">Hello Moagi! I am your Academic Success Agent. I can help you check upcoming assessments, generate study schedules, search study resources, or set reminders. How can I help you today?</p>
                 </div>
             </div>
 
         </div>
 
-        <!-- ASSESSMENTS + PLAN -->
+        <!-- ASSESSMENTS SUMMARY CARD -->
         <div class="content-grid" style="margin-bottom: 25px;">
 
             <div class="card">
-                <h3>Your Assessments</h3>
+                <h3>Your Pending Assessments</h3>
                 <div id="pending-assessments-list">
-                    <div class="list-item">
-                        <div>
-                            <strong>Database Assignment</strong>
-                            <p>Monday, 5 Oct</p>
-                        </div>
-                        <span class="badge badge-danger">High priority</span>
-                    </div>
-                    <div class="list-item">
-                        <div>
-                            <strong>C# Test</strong>
-                            <p>Friday, 2 Oct</p>
-                        </div>
-                        <span class="badge badge-danger">High priority</span>
-                    </div>
+                    <p style="color:#64748b;">Loading pending assessments...</p>
                 </div>
             </div>
 
             <div class="card">
                 <h3>
                     <i class="bi bi-calendar-event"></i>
-                    Recommended Study Plan
+                    Study Plan & Schedule
                 </h3>
                 <p>I can generate and save a study plan tailored to your upcoming assessments.</p>
                 <button type="button" id="btn-view-study-plan" class="btn-primary">
-                    View Study Plan
+                    View My Study Plan
                 </button>
             </div>
 
@@ -85,7 +63,7 @@
             <div class="quick-actions-header">
                 <div>
                     <h3>Quick Actions</h3>
-                    <p>You can also ask EduBuddy to:</p>
+                    <p>Click a quick action to ask EduBuddy:</p>
                 </div>
             </div>
 
@@ -139,7 +117,7 @@
 
         </div>
 
-        <!-- CHAT INPUT -->
+        <!-- CHAT INPUT FORM -->
         <br />
         <form id="chat-form" onsubmit="event.preventDefault(); sendChatMessage();">
             <div style="display:flex; gap:10px;">

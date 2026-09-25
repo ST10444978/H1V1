@@ -1,4 +1,5 @@
-﻿@{
+﻿@model H1V1.Controllers.DashboardViewModel
+@{
     ViewData["Title"] = "Dashboard";
 }
 
@@ -8,7 +9,7 @@
 
         <div>
             <h1 class="page-title">
-                Good morning, Moagi!
+                Good morning, @Model.StudentName!
                 <i class="bi bi-hand-wave"></i>
             </h1>
 
@@ -25,13 +26,12 @@
     <div class="stat-grid">
 
         <div class="stat-card blue">
-
             <div>
                 <i class="bi bi-calendar-event"></i>
             </div>
 
             <div class="stat-value">
-                3
+                @Model.AssessmentsDueCount
             </div>
 
             <div class="stat-label">
@@ -39,49 +39,7 @@
             </div>
 
             <small>
-                View all <i class="bi bi-arrow-right"></i>
-            </small>
-
-        </div>
-
-
-        <div class="stat-card green">
-
-            <div>
-                <i class="bi bi-clock"></i>
-            </div>
-
-            <div class="stat-value">
-                2.5 hrs
-            </div>
-
-            <div class="stat-label">
-                Study Time Available
-            </div>
-
-            <small>
-                View plan <i class="bi bi-arrow-right"></i>
-            </small>
-
-        </div>
-
-
-        <div class="stat-card purple">
-
-            <div>
-                <i class="bi bi-bar-chart-line"></i>
-            </div>
-
-            <div class="stat-value">
-                72%
-            </div>
-
-            <div class="stat-label">
-                Overall Progress
-            </div>
-
-            <small>
-                View details <i class="bi bi-arrow-right"></i>
+                <a asp-controller="Assessments" asp-action="Index">View all <i class="bi bi-arrow-right"></i></a>
             </small>
 
         </div>
@@ -101,98 +59,51 @@
                     Upcoming Assessments
                 </strong>
 
-                <a href="#">
+                <a asp-controller="Assessments" asp-action="Index">
                     View all <i class="bi bi-arrow-right"></i>
                 </a>
 
             </div>
 
+            @if (Model.UpcomingAssessments.Any())
+            {
+                @foreach (var item in Model.UpcomingAssessments)
+                {
+                    var daysLeft = (item.DueDate - DateTime.Now).Days;
+                    var badgeClass = daysLeft <= 3 ? "badge-danger" : (daysLeft <= 7 ? "badge-warning" : "badge-success");
+                    <div class="list-item">
 
-            <div class="list-item">
+                        <div class="item-left">
 
-                <div class="item-left">
+                            <div class="item-icon">
+                                <i class="bi bi-journal-text"></i>
+                            </div>
 
-                    <div class="item-icon">
-                        <i class="bi bi-book"></i>
-                    </div>
+                            <div>
 
-                    <div>
+                                <div class="item-title">
+                                    @item.Title
+                                </div>
 
-                        <div class="item-title">
-                            Database Assignment
+                                <div class="item-subtitle">
+                                    @item.CourseCode · Due @item.DueDate.ToString("MMM dd, yyyy")
+                                </div>
+
+                            </div>
+
                         </div>
 
-                        <div class="item-subtitle">
-                            Database Systems
-                        </div>
+                        <span class="badge @badgeClass">
+                            @(daysLeft >= 0 ? $"{daysLeft} days left" : "Overdue")
+                        </span>
 
                     </div>
-
-                </div>
-
-                <span class="badge badge-danger">
-                    3 days left
-                </span>
-
-            </div>
-
-
-            <div class="list-item">
-
-                <div class="item-left">
-
-                    <div class="item-icon">
-                        <i class="bi bi-laptop"></i>
-                    </div>
-
-                    <div>
-
-                        <div class="item-title">
-                            C# Test
-                        </div>
-
-                        <div class="item-subtitle">
-                            Programming
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <span class="badge badge-warning">
-                    5 days left
-                </span>
-
-            </div>
-
-
-            <div class="list-item">
-
-                <div class="item-left">
-
-                    <div class="item-icon">
-                        <i class="bi bi-globe2"></i>
-                    </div>
-
-                    <div>
-
-                        <div class="item-title">
-                            Web Development Project
-                        </div>
-
-                        <div class="item-subtitle">
-                            Web Development
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <span class="badge badge-success">
-                    7 days left
-                </span>
-
-            </div>
+                }
+            }
+            else
+            {
+                <p>No upcoming assessments found.</p>
+            }
 
         </div>
 
@@ -207,15 +118,15 @@
             </h3>
 
             <p>
-                You have 2.5 hours available today.
+                You have @Model.AssessmentsDueCount assessment(s) due soon.
                 Would you like me to generate a study
                 plan for your upcoming assessments?
             </p>
 
-            <button class="btn-primary">
+            <a asp-controller="AiAgent" asp-action="Index" class="btn-primary" style="display:inline-block; text-decoration:none;">
                 Generate Study Plan
                 <i class="bi bi-arrow-right"></i>
-            </button>
+            </a>
 
         </div>
 
