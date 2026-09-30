@@ -17,151 +17,209 @@
             </p>
         </div>
 
-        <button type="button" class="btn-primary">
+        <button class="btn-primary" id="newReminderBtn" type="button">
             <i class="bi bi-plus-lg"></i>
             <span>New Reminder</span>
         </button>
 
     </div>
 
+    <div class="card" id="remindersContainer">
 
-    <!-- Reminders Card -->
-    <div class="card reminders-card">
-
-        <!-- Reminder 1 -->
-        <div class="list-item reminder-item">
-
-            <div class="item-left">
-
-                <div class="item-icon">
-                    <i class="bi bi-journal-text"></i>
-                </div>
-
-                <div class="reminder-info">
-
-                    <div class="item-title">
-                        Database Assignment
-                    </div>
-
-                    <div class="item-subtitle">
-                        Monday, 29 Sep · 09:00 AM
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="reminder-actions">
-
-                <span class="badge badge-danger reminder-priority">
-                    High
-                </span>
-
-                <button type="button" class="btn-reminder btn-done">
-                    <i class="bi bi-check-lg"></i>
-                    <span>Done</span>
-                </button>
-
-                <button type="button" class="btn-reminder btn-snooze">
-                    <i class="bi bi-alarm"></i>
-                    <span>Snooze</span>
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- Reminder 2 -->
-        <div class="list-item reminder-item">
-
-            <div class="item-left">
-
-                <div class="item-icon">
-                    <i class="bi bi-journal-text"></i>
-                </div>
-
-                <div class="reminder-info">
-
-                    <div class="item-title">
-                        C# Test
-                    </div>
-
-                    <div class="item-subtitle">
-                        Friday, 2 Oct · 09:00 AM
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="reminder-actions">
-
-                <span class="badge badge-danger reminder-priority">
-                    High
-                </span>
-
-                <button type="button" class="btn-reminder btn-done">
-                    <i class="bi bi-check-lg"></i>
-                    <span>Done</span>
-                </button>
-
-                <button type="button" class="btn-reminder btn-snooze">
-                    <i class="bi bi-alarm"></i>
-                    <span>Snooze</span>
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- Reminder 3 -->
-        <div class="list-item reminder-item">
-
-            <div class="item-left">
-
-                <div class="item-icon">
-                    <i class="bi bi-calendar-event"></i>
-                </div>
-
-                <div class="reminder-info">
-
-                    <div class="item-title">
-                        Study Plan Session
-                    </div>
-
-                    <div class="item-subtitle">
-                        Sunday · 4 Oct · 10:00 AM
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="reminder-actions">
-
-                <span class="badge badge-warning reminder-priority">
-                    Medium
-                </span>
-
-                <button type="button" class="btn-reminder btn-done">
-                    <i class="bi bi-check-lg"></i>
-                    <span>Done</span>
-                </button>
-
-                <button type="button" class="btn-reminder btn-snooze">
-                    <i class="bi bi-alarm"></i>
-                    <span>Snooze</span>
-                </button>
-
-            </div>
-
+        <div class="list-item">
+            Loading reminders...
         </div>
 
     </div>
 
 </div>
+
+@section Scripts {
+    <script>
+        async function loadRemindersList() {
+            try {
+                const response = await fetch('/api/reminders');
+
+                if (!response.ok) {
+                    throw new Error('HTTP ' + response.status);
+                }
+
+                const reminders = await response.json();
+
+                const container = document.getElementById('remindersContainer');
+
+                if (!Array.isArray(reminders) || reminders.length === 0) {
+                    container.innerHTML = `
+                        <div class="list-item">
+                            <div class="item-left">
+                                <div class="item-icon">
+                                    <i class="bi bi-bell"></i>
+                                </div>
+                                <div>
+                                    <div class="item-title">No reminders</div>
+                                    <div class="item-subtitle">You are all caught up.</div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    return;
+                }
+
+                container.innerHTML = reminders.map(r => `
+                    <div class="list-item" data-id="${r.id}">
+
+                        <div class="item-left">
+
+                            <div class="item-icon">
+                                <i class="bi bi-journal-text"></i>
+                            </div>
+
+                            <div>
+                                <div class="item-title">
+                                    ${r.title}
+                                </div>
+
+                                <div class="item-subtitle">
+                                    ${r.dateTimeDisplay}
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <span class="badge ${r.priority === 'High' ? 'badge-danger' : 'badge-warning'}">
+                            ${r.priority}
+                        </span>
+
+                        <button type="button" class="done-btn" data-id="${r.id}">
+                            <i class="bi bi-check-lg"></i>
+                            Done
+                        </button>
+
+                        <button type="button" class="snooze-btn" data-id="${r.id}">
+                            <i class="bi bi-alarm"></i>
+                            Snooze
+                        </button>
+
+                    </div>
+                `).join('');
+
+            } catch (error) {
+                console.error("Error loading reminders:", error);
+
+                document.getElementById('remindersContainer').innerHTML = `
+                    <div class="list-item">
+                        <div class="item-title">
+                            Unable to load reminders.
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        async function createReminder() {
+            const title = prompt("Enter reminder title:");
+
+            if (!title || !title.trim()) {
+                return;
+            }
+
+            const dateTimeDisplay = prompt(
+                "Enter date and time:",
+                "Monday, 29 Sep · 09:00 AM"
+            );
+
+            const priority = prompt(
+                "Enter priority (High or Medium):",
+                "Medium"
+            );
+
+            try {
+                const response = await fetch('/api/reminders', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        title: title.trim(),
+                        dateTimeDisplay: dateTimeDisplay,
+                        priority: priority
+                    })
+                });
+
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(error.message || 'Failed to create reminder.');
+                }
+
+                await loadRemindersList();
+
+            } catch (error) {
+                console.error("Error creating reminder:", error);
+                alert(error.message);
+            }
+        }
+
+        async function markReminderDone(id) {
+            try {
+                const response = await fetch(`/api/reminders/${id}/done`, {
+                    method: 'POST'
+                });
+
+                if (!response.ok) {
+                    throw new Error('HTTP ' + response.status);
+                }
+
+                await loadRemindersList();
+
+            } catch (error) {
+                console.error("Error marking reminder as done:", error);
+                alert("Unable to mark the reminder as done.");
+            }
+        }
+
+        async function snoozeReminder(id) {
+            try {
+                const response = await fetch(`/api/reminders/${id}/snooze`, {
+                    method: 'POST'
+                });
+
+                if (!response.ok) {
+                    throw new Error('HTTP ' + response.status);
+                }
+
+                await loadRemindersList();
+
+            } catch (error) {
+                console.error("Error snoozing reminder:", error);
+                alert("Unable to snooze the reminder.");
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+
+            loadRemindersList();
+
+            document.getElementById("newReminderBtn").addEventListener("click", createReminder);
+
+            document.getElementById("remindersContainer").addEventListener("click", (event) => {
+
+                const doneButton = event.target.closest(".done-btn");
+
+                if (doneButton) {
+                    const id = doneButton.dataset.id;
+                    markReminderDone(id);
+                    return;
+                }
+
+                const snoozeButton = event.target.closest(".snooze-btn");
+
+                if (snoozeButton) {
+                    const id = snoozeButton.dataset.id;
+                    snoozeReminder(id);
+                }
+
+            });
+
+        });
+    </script>
+}
