@@ -12,7 +12,7 @@ namespace H1V1.Services.AI
         private readonly ILogger<ChatAgentService> _logger;
         private readonly Client _geminiClient;
 
-        private const string ModelName = "gemini-3.6-flash";
+        private const string ModelName = "gemini-3.5-flash-lite";
 
         private const int MaxToolRounds = 2;
         private const int MaxRetries = 2;
