@@ -1,73 +1,174 @@
 @{
-    ViewData["Title"] = "Recommended Resources";
+    ViewData["Title"] = "Resources";
 }
 
 <div class="page">
 
+    <!-- PAGE HEADER -->
     <div class="page-header">
 
         <div>
+
             <h1 class="page-title">
                 Recommended Resources
             </h1>
+
             <p class="page-subtitle">
-                Curated by EduBuddy based on your upcoming assessments and study plan.
+                Curated by EduBuddy based on your upcoming
+                assessments and study plan.
             </p>
+
         </div>
 
-        <div>
-            <input id="resource-topic-input" type="text" class="search" placeholder="Enter topic (e.g. Data Structures)..." style="width:250px; display:inline-block;" />
-            <button class="btn-primary" onclick="searchTopicResources()">
-                Search Resources
-            </button>
-        </div>
+        <select class="resource-subject-select">
+            <option>All Subjects</option>
+            <option>Programming</option>
+            <option>Database Systems</option>
+            <option>Web Development</option>
+        </select>
 
     </div>
 
-    <div class="card">
-        <div id="resources-results-container">
-            <h3>Resources Results</h3>
-            <p id="resources-status">Click Search Resources or ask EduBuddy via AI Chat to find relevant study materials.</p>
-            <div id="resources-grid" class="content-grid"></div>
+
+    <!-- RESOURCES CARD -->
+    <div class="card resources-card">
+
+        <!-- RESOURCE TABS -->
+        <div class="resource-tabs" role="tablist">
+
+            <button type="button"
+                    class="resource-tab active"
+                    role="tab">
+                <i class="bi bi-grid"></i>
+                <span>All</span>
+            </button>
+
+            <button type="button"
+                    class="resource-tab"
+                    role="tab">
+                <i class="bi bi-play-circle"></i>
+                <span>Videos</span>
+            </button>
+
+            <button type="button"
+                    class="resource-tab"
+                    role="tab">
+                <i class="bi bi-file-text"></i>
+                <span>Articles</span>
+            </button>
+
+            <button type="button"
+                    class="resource-tab"
+                    role="tab">
+                <i class="bi bi-pencil-square"></i>
+                <span>Practice</span>
+            </button>
+
+            <button type="button"
+                    class="resource-tab"
+                    role="tab">
+                <i class="bi bi-book"></i>
+                <span>Books</span>
+            </button>
+
         </div>
+
+
+        <!-- RECOMMENDED SECTION -->
+        <div class="resources-heading">
+
+            <h3>
+                <i class="bi bi-stars"></i>
+                Recommended for: C# Test
+            </h3>
+
+        </div>
+
+
+        <!-- RESOURCE GRID -->
+        <div class="content-grid resources-grid">
+
+            <!-- RESOURCE 1 -->
+            <div class="card resource-card">
+
+                <div class="resource-icon">
+                    <i class="bi bi-play-fill"></i>
+                </div>
+
+                <div class="resource-type">
+                    VIDEO
+                </div>
+
+                <h3>
+                    C# Classes &amp; Objects
+                </h3>
+
+                <p>
+                    Learn the fundamentals of C# classes,
+                    objects and methods.
+                </p>
+
+                <div class="resource-meta">
+                    <span>
+                        <i class="bi bi-play-circle"></i>
+                        Video
+                    </span>
+
+                    <span>
+                        <i class="bi bi-clock"></i>
+                        12 min
+                    </span>
+                </div>
+
+                <button type="button" class="btn-primary resource-button">
+                    View Resource
+                    <i class="bi bi-arrow-right"></i>
+                </button>
+
+            </div>
+
+
+            <!-- RESOURCE 2 -->
+            <div class="card resource-card">
+
+                <div class="resource-icon">
+                    <i class="bi bi-play-fill"></i>
+                </div>
+
+                <div class="resource-type">
+                    VIDEO
+                </div>
+
+                <h3>
+                    C# OOP Revision
+                </h3>
+
+                <p>
+                    Quick revision on Object-Oriented
+                    Programming concepts.
+                </p>
+
+                <div class="resource-meta">
+                    <span>
+                        <i class="bi bi-play-circle"></i>
+                        Video
+                    </span>
+
+                    <span>
+                        <i class="bi bi-clock"></i>
+                        25 min
+                    </span>
+                </div>
+
+                <button type="button" class="btn-primary resource-button">
+                    View Resource
+                    <i class="bi bi-arrow-right"></i>
+                </button>
+
+            </div>
+
+        </div>
+
     </div>
 
 </div>
-
-@section Scripts {
-    <script>
-        async function searchTopicResources() {
-            const topicInput = document.getElementById("resource-topic-input");
-            const statusEl = document.getElementById("resources-status");
-            const grid = document.getElementById("resources-grid");
-
-            const topic = topicInput ? topicInput.value.trim() : "Data Structures";
-            if (!topic) return;
-
-            statusEl.innerText = `Searching resources for '${topic}' via AI Chat agent...`;
-            grid.innerHTML = "";
-
-            try {
-                const res = await fetch("/api/chat", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ studentId: 1, prompt: `Search resources for ${topic}` })
-                });
-
-                if (res.ok) {
-                    const data = await res.json();
-                    statusEl.innerHTML = `<strong>Search Results:</strong>`;
-                    grid.innerHTML = `<div class="card" style="grid-column: 1 / -1;"><p style="white-space: pre-wrap;">${escapeHtml(data.response)}</p></div>`;
-                } else {
-                    statusEl.innerText = "Error searching resources.";
-                }
-            } catch (err) {
-                statusEl.innerText = "Error connecting to AI API: " + err.message;
-            }
-        }
-
-        function escapeHtml(str) {
-            return (str || '').replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-        }
-    </script>
-}

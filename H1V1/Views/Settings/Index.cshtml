@@ -1,0 +1,610 @@
+﻿@{
+    ViewData["Title"] = "Settings";
+}
+
+<div class="page">
+
+    <!-- PAGE HEADER -->
+    <div class="page-header">
+
+        <div>
+            <h1 class="page-title">
+                Settings
+            </h1>
+
+            <p class="page-subtitle">
+                Manage your EduBuddy preferences and account settings.
+            </p>
+        </div>
+
+    </div>
+
+
+    <!-- SETTINGS LAYOUT -->
+    <div class="settings-layout">
+
+
+        <!-- LEFT COLUMN -->
+        <div class="settings-main">
+
+
+            <!-- PROFILE -->
+            <div class="card settings-card">
+
+                <div class="settings-card-header">
+
+                    <div class="settings-heading">
+
+                        <div class="settings-heading-icon">
+                            <i class="bi bi-person"></i>
+                        </div>
+
+                        <div>
+                            <h3>
+                                Profile
+                            </h3>
+
+                            <p>
+                                Update your personal information.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="settings-profile">
+
+                    <div class="settings-avatar">
+                        MT
+                    </div>
+
+                    <div class="settings-profile-info">
+
+                        <h4>
+                            Moagi Theledi
+                        </h4>
+
+                        <p>
+                            Computer Science Student
+                        </p>
+
+                        <span>
+                            <i class="bi bi-mortarboard"></i>
+                            Emeris Pretoria
+                        </span>
+
+                    </div>
+
+                    <button type="button" class="btn-outline">
+                        <i class="bi bi-pencil"></i>
+                        Edit Profile
+                    </button>
+
+                </div>
+
+
+                <div class="settings-form-grid">
+
+                    <div class="settings-field">
+
+                        <label for="firstName">
+                            First Name
+                        </label>
+
+                        <input type="text"
+                               id="firstName"
+                               value="Moagi" />
+
+                    </div>
+
+
+                    <div class="settings-field">
+
+                        <label for="lastName">
+                            Last Name
+                        </label>
+
+                        <input type="text"
+                               id="lastName"
+                               value="Theledi" />
+
+                    </div>
+
+
+                    <div class="settings-field settings-field-full">
+
+                        <label for="email">
+                            Email Address
+                        </label>
+
+                        <input type="email"
+                               id="email"
+                               value="moagi@example.com" />
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- NOTIFICATIONS -->
+            <div class="card settings-card">
+
+                <div class="settings-card-header">
+
+                    <div class="settings-heading">
+
+                        <div class="settings-heading-icon">
+                            <i class="bi bi-bell"></i>
+                        </div>
+
+                        <div>
+                            <h3>
+                                Notifications
+                            </h3>
+
+                            <p>
+                                Choose what you want EduBuddy to remind you about.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="settings-options">
+
+                    <div class="settings-option">
+
+                        <div class="settings-option-icon">
+                            <i class="bi bi-calendar-event"></i>
+                        </div>
+
+                        <div class="settings-option-content">
+
+                            <strong>
+                                Assessment Reminders
+                            </strong>
+
+                            <span>
+                                Get notified about upcoming tests, assignments and deadlines.
+                            </span>
+
+                        </div>
+
+                        <label class="toggle">
+
+                            <input type="checkbox" checked />
+
+                            <span class="toggle-slider"></span>
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="settings-option">
+
+                        <div class="settings-option-icon">
+                            <i class="bi bi-clock-history"></i>
+                        </div>
+
+                        <div class="settings-option-content">
+
+                            <strong>
+                                Study Plan Reminders
+                            </strong>
+
+                            <span>
+                                Receive reminders when it is time to start a study session.
+                            </span>
+
+                        </div>
+
+                        <label class="toggle">
+
+                            <input type="checkbox" checked />
+
+                            <span class="toggle-slider"></span>
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="settings-option">
+
+                        <div class="settings-option-icon">
+                            <i class="bi bi-stars"></i>
+                        </div>
+
+                        <div class="settings-option-content">
+
+                            <strong>
+                                AI Study Suggestions
+                            </strong>
+
+                            <span>
+                                Receive personalised study tips and resource recommendations.
+                            </span>
+
+                        </div>
+
+                        <label class="toggle">
+
+                            <input type="checkbox" checked />
+
+                            <span class="toggle-slider"></span>
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- STUDY PREFERENCES -->
+            <div class="card settings-card">
+
+                <div class="settings-card-header">
+
+                    <div class="settings-heading">
+
+                        <div class="settings-heading-icon">
+                            <i class="bi bi-book"></i>
+                        </div>
+
+                        <div>
+                            <h3>
+                                Study Preferences
+                            </h3>
+
+                            <p>
+                                Personalise how EduBuddy helps you study.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="settings-form-grid">
+
+                    <div class="settings-field">
+
+                        <label for="studyDuration">
+                            Study Session Duration
+                        </label>
+
+                        <select id="studyDuration">
+
+                            <option>25 minutes</option>
+                            <option selected>45 minutes</option>
+                            <option>60 minutes</option>
+                            <option>90 minutes</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="settings-field">
+
+                        <label for="breakDuration">
+                            Break Duration
+                        </label>
+
+                        <select id="breakDuration">
+
+                            <option>5 minutes</option>
+                            <option selected>10 minutes</option>
+                            <option>15 minutes</option>
+                            <option>20 minutes</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="settings-field">
+
+                        <label for="studyGoal">
+                            Daily Study Goal
+                        </label>
+
+                        <select id="studyGoal">
+
+                            <option>1 hour</option>
+                            <option>2 hours</option>
+                            <option selected>3 hours</option>
+                            <option>4 hours</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="settings-field">
+
+                        <label for="resourcePreference">
+                            Preferred Resources
+                        </label>
+
+                        <select id="resourcePreference">
+
+                            <option selected>Mix of resources</option>
+                            <option>Videos</option>
+                            <option>Articles</option>
+                            <option>Practice</option>
+                            <option>Books</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- APPEARANCE -->
+            <div class="card settings-card">
+
+                <div class="settings-card-header">
+
+                    <div class="settings-heading">
+
+                        <div class="settings-heading-icon">
+                            <i class="bi bi-palette"></i>
+                        </div>
+
+                        <div>
+                            <h3>
+                                Appearance
+                            </h3>
+
+                            <p>
+                                Choose how EduBuddy looks on your device.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="appearance-options">
+
+                    <label class="appearance-option active">
+
+                        <input type="radio"
+                               name="theme"
+                               value="light"
+                               checked />
+
+                        <div class="appearance-preview light-preview">
+
+                            <div class="preview-top"></div>
+
+                            <div class="preview-content">
+
+                                <div></div>
+                                <div></div>
+                                <div></div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="appearance-label">
+
+                            <strong>
+                                Light
+                            </strong>
+
+                            <span>
+                                Default
+                            </span>
+
+                        </div>
+
+                        <i class="bi bi-check-circle-fill"></i>
+
+                    </label>
+
+
+                    <label class="appearance-option">
+
+                        <input type="radio"
+                               name="theme"
+                               value="dark" />
+
+                        <div class="appearance-preview dark-preview">
+
+                            <div class="preview-top"></div>
+
+                            <div class="preview-content">
+
+                                <div></div>
+                                <div></div>
+                                <div></div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="appearance-label">
+
+                            <strong>
+                                Dark
+                            </strong>
+
+                            <span>
+                                Coming soon
+                            </span>
+
+                        </div>
+
+                        <i class="bi bi-check-circle-fill"></i>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <!-- SAVE -->
+            <div class="settings-save">
+
+                <span>
+                    <i class="bi bi-shield-check"></i>
+                    Your settings are saved securely.
+                </span>
+
+                <button type="button" class="btn-primary">
+                    <i class="bi bi-check-lg"></i>
+                    Save Changes
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- RIGHT COLUMN -->
+        <aside class="settings-sidebar">
+
+
+            <!-- ACCOUNT -->
+            <div class="card settings-card settings-account-card">
+
+                <div class="settings-card-header">
+
+                    <div class="settings-heading">
+
+                        <div class="settings-heading-icon">
+                            <i class="bi bi-person-circle"></i>
+                        </div>
+
+                        <div>
+                            <h3>
+                                Account
+                            </h3>
+
+                            <p>
+                                Manage your account.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="settings-account-links">
+
+                    <button type="button">
+                        <span>
+                            <i class="bi bi-lock"></i>
+                            Change Password
+                        </span>
+
+                        <i class="bi bi-chevron-right"></i>
+                    </button>
+
+
+                    <button type="button">
+                        <span>
+                            <i class="bi bi-shield-lock"></i>
+                            Privacy
+                        </span>
+
+                        <i class="bi bi-chevron-right"></i>
+                    </button>
+
+
+                    <button type="button">
+                        <span>
+                            <i class="bi bi-file-earmark-text"></i>
+                            Terms &amp; Conditions
+                        </span>
+
+                        <i class="bi bi-chevron-right"></i>
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- HELP -->
+            <div class="card settings-help-card">
+
+                <div class="settings-help-icon">
+                    <i class="bi bi-question-circle"></i>
+                </div>
+
+                <h3>
+                    Need help?
+                </h3>
+
+                <p>
+                    Have a question about EduBuddy or your study dashboard?
+                </p>
+
+                <button type="button" class="btn-outline">
+                    <i class="bi bi-headset"></i>
+                    Contact Support
+                </button>
+
+            </div>
+
+
+            <!-- DANGER ZONE -->
+            <div class="card settings-card danger-settings-card">
+
+                <div class="settings-card-header">
+
+                    <div class="settings-heading">
+
+                        <div class="settings-heading-icon danger-icon">
+                            <i class="bi bi-exclamation-triangle"></i>
+                        </div>
+
+                        <div>
+                            <h3>
+                                Account Actions
+                            </h3>
+
+                            <p>
+                                Actions that affect your account.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <button type="button" class="delete-account-btn">
+                    <i class="bi bi-trash3"></i>
+                    Delete Account
+                </button>
+
+            </div>
+
+        </aside>
+
+    </div>
+
+</div>
+
